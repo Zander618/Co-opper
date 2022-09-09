@@ -8,19 +8,18 @@ import { Link } from 'react-router-dom'
 
 export default function ButtonAppBar() {
 
-
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Link to="/">Home</Link>
-          <Link to="/gameslist">Games</Link>
-          <Link to="/mygames">My Games</Link>
+          <Button><Link to="/">Home</Link></Button>
+          <Button><Link to="/gameslist">Games</Link></Button>
+          <Button><Link to="/mygames">My Games</Link></Button>
           <Typography variant="h4" component="div" sx={{ flexGrow: 1}}>
             Co-opper
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button><Link to="/signup">Sign Up</Link></Button>
+          <Button><Link to="/login">Login</Link></Button>
         </Toolbar>
       </AppBar>
     </Box>
