@@ -10,11 +10,22 @@ import Signup from "./Signup";
 function App() {
 
   const [user, setUser] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false)
+
+  const loginUser = currentUser => {
+    setUser(currentUser)
+    setLoggedIn(true)
+  }
+
+  const logoutUser = () => {
+    setUser({})
+    setLoggedIn(false)
+  }
 
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => loginUser(user));
       }
     });
   }, []);
@@ -24,13 +35,13 @@ function App() {
 
   return (
     <Router>
-      <NavBar/>
+      <NavBar loggedIn={ loggedIn } logoutUser={ logoutUser } currentUser={user}/>
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Home user={user}/>}/>
         <Route path="/gameslist" element={<GamesList/>}/>
         <Route path="/mygames" element={<MyGames/>}/>
         <Route path="/signup" element={<Signup/>}/>
-        <Route path="/login" element={<Login onLogin={setUser}/>}/>
+        <Route path="/login" element={<Login onLogin={loginUser}/>}/>
       </Routes>
     </Router>
   );

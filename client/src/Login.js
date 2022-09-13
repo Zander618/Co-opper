@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 
 const Login = ( { onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,6 +18,7 @@ const Login = ( { onLogin }) => {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => onLogin(user));
+        navigate("/gameslist")
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
