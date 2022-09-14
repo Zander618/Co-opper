@@ -5,8 +5,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 export default function ButtonAppBar({ loggedIn, logoutUser, currentUser }) {
+  const navigate = useNavigate()
   
   const loggedOutLinks = () => {
     return (
@@ -35,6 +37,7 @@ export default function ButtonAppBar({ loggedIn, logoutUser, currentUser }) {
   const handleLogout = (e) => {
     e.preventDefault();
     logoutUser();
+    navigate("/home")
   };
 
   const loggedInLinks = () => {

@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authorize
 
   #GET /games
   def index

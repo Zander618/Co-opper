@@ -6,12 +6,15 @@ import GamesList from "./GamesList";
 import MyGames from "./MyGames";
 import Login from "./Login";
 import Signup from "./Signup";
+import Game from "./Game";
 
 function App() {
 
+  const [games, setGames] = useState([]);
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false)
-  const [games, setGames] = useState([])
+
+  console.log("logged in", loggedIn)
 
   const loginUser = currentUser => {
     setUser(currentUser)
@@ -28,28 +31,19 @@ function App() {
       if (r.ok) {
         r.json().then((user) => loginUser(user));
       }
-       if (loggedIn) {
-        fetch ("http://localhost:3000/games", {
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-          }
-        })
-        .then( resp => resp.json())
-        .then( data => setGames( data ))
-       }
-    });
+    })
   }, []);
-
+  
   return (
     <Router>
       <NavBar loggedIn={ loggedIn } logoutUser={ logoutUser } currentUser={user}/>
       <Routes>
         <Route path="/" element={<Home user={user}/>}/>
-        <Route path="/gameslist" element={<GamesList games={games}/>}/>
+        <Route path="/gameslist" element={<GamesList games={games} setGames={setGames}/>}/>
         <Route path="/mygames" element={<MyGames/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login onLogin={loginUser}/>}/>
+        <Route path="/games/:id" element={<Game loggedIn={loggedIn} games={games} />}/>
       </Routes>
     </Router>
   );
