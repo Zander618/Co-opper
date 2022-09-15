@@ -50,6 +50,7 @@ const Game = ({ games, currentUser, setCurrentUser }) => {
   const handleClick = () => {
     console.log("hi")
   }
+  console.log("GAME SINGULAR", game)
 
   return (
     <div className="game">

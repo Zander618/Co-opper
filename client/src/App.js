@@ -32,6 +32,12 @@ function App() {
         r.json().then((user) => loginUser(user));
       }
     })
+
+     {
+      fetch("/games")
+      .then((r) => r.json())
+      .then(setGames);
+    }
   }, []);
   
   return (
