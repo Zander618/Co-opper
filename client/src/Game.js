@@ -2,55 +2,51 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Game.css";
 
-const Game = ({ games, currentUser, setCurrentUser }) => {
+const Game = ({ games, user, setUser }) => {
   const [game, setGame] = useState({});
   const { id } = useParams();
 
-  // const userId = currentUser.id;
+  const userId = user.id;
 
   useEffect(() => {
     const game = games.find((g) => g.id.toString() === id);
     setGame(game);
   }, [id]);
 
-  // const handleClick = () => {
-  //   fetch(baseUrl + `/users/${userId}/user_games`, {
-  //     method: "POST",
-  //     headers: {
-  //       ...headers,
-  //       ...getToken(),
-  //     },
-  //     body: JSON.stringify({
-  //       user_id: userId,
-  //       game_id: game.id,
-  //       platform: null,
-  //       played: null,
-  //       name: game.name,
-  //       image_url: game.image_url,
-  //     }),
-  //   })
-  //     .then((resp) => resp.json())
-  //     .then((data) => {
-  //       addGameToUserList(data);
-  //       console.log("Added Game Data", data);
-  //     });
-  // };
-
-  // const addGameToUserList = (newGame) => {
-  //   if (currentUser.user_games.game_id === newGame.game_id) {
-  //     alert("In List Already");
-  //   } else {
-  //     const updatedUser = { ...currentUser };
-  //     updatedUser.user_games.push(newGame);
-  //     setCurrentUser(updatedUser);
-  //     alert("Added to My Watch List");
-  //   }
-  // };
-
   const handleClick = () => {
-    console.log("hi")
-  }
-  console.log("GAME SINGULAR", game)
+    fetch(`/users/${userId}/user_games`, {
+      method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      body: JSON.stringify({
+        user_id: userId,
+        game_id: game.id,
+        platform: null,
+        played: null,
+        name: game.name,
+        image_url: game.image_url,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        addGameToUserList(data);
+        console.log("Added Game Data", data);
+      });
+  };
+
+  const addGameToUserList = (newGame) => {
+    // if (user.user_games.game_id === newGame.game_id) {
+    //   alert("In List Already");
+    // } else {
+      const updatedUser = { ...user };
+      // updatedUser.push(newGame);
+      setUser(updatedUser);
+      alert("Added to My Watch List");
+    // }
+  };
+
+  console.log("User Data", user)
 
   return (
     <div className="game">

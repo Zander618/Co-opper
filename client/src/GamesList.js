@@ -5,11 +5,9 @@ const GamesList = ( {games, setGames }) => {
 
   const gameCards = games.map(game => <GameCard key={game.id} game={game}/>)
 
-  console.log({games})
-
   return (
     <div>
-      <h1>Games List</h1>
+      <h1 style={{ alignContent: 'center'  }}>Games List</h1>
       <div className="game">
         {gameCards}
       </div>

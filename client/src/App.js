@@ -46,10 +46,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={user}/>}/>
         <Route path="/gameslist" element={<GamesList games={games} setGames={setGames}/>}/>
-        <Route path="/mygames" element={<MyGames/>}/>
+        <Route path="/mygames" element={<MyGames loggedIn={loggedIn} games={games} user={user} setUser={setUser}/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login onLogin={loginUser}/>}/>
-        <Route path="/games/:id" element={<Game loggedIn={loggedIn} games={games} />}/>
+        <Route path="/games/:id" element={<Game loggedIn={loggedIn} games={games} user={user} setUser={setUser}/>}/>
       </Routes>
     </Router>
   );
