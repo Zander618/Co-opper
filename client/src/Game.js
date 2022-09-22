@@ -22,10 +22,6 @@ const Game = ({ games, user, setUser }) => {
       body: JSON.stringify({
         user_id: userId,
         game_id: game.id,
-        platform: null,
-        played: null,
-        name: game.name,
-        image_url: game.image_url,
       }),
     })
       .then((resp) => resp.json())
@@ -46,7 +42,7 @@ const Game = ({ games, user, setUser }) => {
     // }
   };
 
-  console.log("User Data", user)
+  // console.log("User Data", user.user_games.game_id.map((g) => g.id))
 
   return (
     <div className="game">

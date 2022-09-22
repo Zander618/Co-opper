@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :games
-  
+  resources :reviews
   resources :users do
     resources :user_games
   end

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @current_user, include: [:user_games]
+    render json: @current_user
   end
 
   private
