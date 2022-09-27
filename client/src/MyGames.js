@@ -1,14 +1,9 @@
 import React, { useEffect } from "react";
+import "./Game.css";
 // import Select from "react-select";
 
 const MyGames = ({ user, setUser, games }) => {
   const userId = user.id;
-
-  // const options = [
-  //   { value: "playstation", label: "Playstation" },
-  //   { value: "Xbox", label: "Xbox" },
-  //   { value: "Nintendo", label: "Nintendo" },
-  // ];
 
   // function handleDeleteClick(e) {
   //   fetch(baseUrl + `/user_games/${e.target.id}`, {
@@ -27,33 +22,46 @@ const MyGames = ({ user, setUser, games }) => {
   //   setCurrentUser(updatedUser);
   // };
 
+  const uniqueIds = [];
+
+  const uniqueUserGames = user.games.filter(element => {
+    const isDuplicate = uniqueIds.includes(element.id);
+
+    if (!isDuplicate) {
+      uniqueIds.push(element.id);
+
+      return true;
+    }
+
+    return false;
+  });
+
+
+
   const userGame = () =>
-    user.user_games.map((ug) => {
-      // games.map((game) => {
-      //   if (game.id === userGame.game_id) {
-          return (
-            <div key={ug.game_id}>
-              <h1>{ug.game_id}</h1>
-              {/* <img src={game.image_url} alt="this game" /> */}
-              {/* <label>
-          <input type="checkbox" />
+    uniqueUserGames.map((usergame) => {
+      return (
+        <div className="game">
+        <h1>{usergame.name}</h1>
+        <img src={usergame.image_url} alt="One Game" />
+        <p>Release: {usergame.release}</p>
+        <label>
+          <input type="checkbox"/>
           Played
         </label>
-        <Select options={options}>Platform</Select>
-        <button id={userGame.id} onClick={handleDeleteClick}>
+        <br></br>
+        <button>
           Remove from list
-        </button> */}
-            </div>
-          );
-        // }
-      // });
+        </button>
+      </div>
+      );
     });
 
   return (
     <div>
       <h1>My Games</h1>
       {/* {loggedIn ? userGame() : <p>Loading...</p>} */}
-      {userGame}
+      {userGame()}
     </div>
   );
 };

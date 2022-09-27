@@ -26,7 +26,7 @@ class UserGamesController < ApplicationController
   private
 
   def user_game_params
-    params.require(:user_game).permit(:user_id, :game_id, :platform, :played, :name, :image_url)
+    params.require(:user_game).permit(:user_id, :game_id)
   end
 
 end

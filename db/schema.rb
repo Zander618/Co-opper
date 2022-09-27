@@ -51,3 +51,6 @@ ActiveRecord::Schema.define(version: 2022_08_12_183054) do
   end
 
 end
+
+# allow users to add games
+# 
