@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Game.css";
+import Reviews from "./Reviews";
 
 const Game = ({ games, user, setUser }) => {
   const [game, setGame] = useState({});
@@ -31,18 +32,12 @@ const Game = ({ games, user, setUser }) => {
       });
   };
 
-  const addGameToUserList = (newGame) => {
-    // if (user.user_games.game_id === newGame.game_id) {
-    //   alert("In List Already");
-    // } else {
+  const addGameToUserList = () => {
       const updatedUser = { ...user };
-      // updatedUser.push(newGame);
       setUser(updatedUser);
       alert("Added to My Watch List");
-    // }
   };
 
-  // console.log("User Data", user.user_games.game_id.map((g) => g.id))
 
   return (
     <div className="game">
@@ -56,6 +51,7 @@ const Game = ({ games, user, setUser }) => {
       </button>
       <br></br>
       <br></br>
+      <Reviews game={game.id} userId={userId} setUser={setUser}/>
     </div>
   );
 };
