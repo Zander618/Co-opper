@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddReview from "./AddReview";
+import { useParams } from "react-router-dom";
+import Review from "./Review";
 
-const Reviews = ( {game, userId, setUser }) => {
+const Reviews = ( {games, gameId, userId, setUser }) => {
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [game, setGame] = useState({})
+  const { id } = useParams();
+
+  useEffect(() => {
+    const game = games.find((g) => g.id.toString() === id);
+    setGame(game);
+  }, [id]);
+
+
 
   return (
     <div>
@@ -16,10 +27,18 @@ const Reviews = ( {game, userId, setUser }) => {
       <AddReview
         trigger={buttonPopup}
         setTrigger={setButtonPopup}
-        game={game} 
+        gameId={gameId} 
         userId={userId} 
         setUser={setUser}
       />
+      <div>
+            <div>
+              <h1>Reviews :</h1>
+               <div>
+                <Review game={game}/>
+               </div>
+            </div>
+      </div>
     </div>
   );
 };

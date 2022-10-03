@@ -1,33 +1,33 @@
 import React, { useState } from "react";
 import "./PopUp.css"
 
-const AddReview = ({ trigger, setTrigger, game, userId, setUser }) => {
+const AddReview = ({ trigger, setTrigger, gameId, userId, setUser }) => {
   const [formData, setFormData] = useState({
     user_id: userId,
-    game_id: game,
+    game_id: gameId,
     review: "",
     rating: "",
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/users/${userId}`, {
+    fetch(`/reviews`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         user_id: userId,
-        game_id: game,
+        game_id: gameId,
         review: formData.review,
-        estimated_value: formData.rating,
+        rating: formData.rating,
       }),
     })
       .then((resp) => resp.json())
       .then((data) => console.log(data));
     setFormData({
       user_id: userId,
-      game_id: game,
+      game_id: gameId,
       review: "",
       rating: "",
     });
@@ -71,7 +71,7 @@ const AddReview = ({ trigger, setTrigger, game, userId, setUser }) => {
           <label style={{ color: "black" }} >
             Rating:
             <input
-              type="text"
+              type="number"
               name="rating"
               value={formData.rating}
               onChange={handleChange}
