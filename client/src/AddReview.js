@@ -73,6 +73,7 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser }) => {
             <input
               type="number"
               name="rating"
+              max="10"
               value={formData.rating}
               onChange={handleChange}
             />

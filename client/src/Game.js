@@ -51,7 +51,7 @@ const Game = ({ games, user, setUser }) => {
       </button>
       <br></br>
       <br></br>
-      <Reviews games={games} gameId={game.id} userId={userId} setUser={setUser}/>
+      <Reviews games={games} gameId={game.id} user={user} userId={userId} setUser={setUser}/>
     </div>
   );
 };

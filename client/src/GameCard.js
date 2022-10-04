@@ -8,7 +8,7 @@ const GameCard = ( {game}) => {
   return (
     <div className="movie-card">
       <h3>{game.name}:</h3>
-      <img src={game.image_url} alt="game image" height="250" width="200"/>
+      <img src={game.image_url} alt="video game" height="250" width="200"/>
       <br></br>
       <button onClick={ () => navigate (`/games/${game.id}`) }>Click for more info</button>     
     </div>

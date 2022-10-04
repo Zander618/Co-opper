@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import GameCard from './GameCard'
 
 const GamesList = ( {games, setGames }) => {
