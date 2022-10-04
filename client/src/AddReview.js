@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./PopUp.css"
+import "./Game.css"
 
-const AddReview = ({ trigger, setTrigger, gameId, userId, setUser }) => {
+const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user }) => {
   const [formData, setFormData] = useState({
     user_id: userId,
     game_id: gameId,
@@ -24,7 +25,7 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser }) => {
       }),
     })
       .then((resp) => resp.json())
-      .then((data) => console.log(data));
+      .then((data) => addReview(data));
     setFormData({
       user_id: userId,
       game_id: gameId,
@@ -40,17 +41,11 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser }) => {
     });
   };
 
-  // const addAsset = (asset) => {
-  //   const updatedUsers = users.map((user) => {
-  //     if (user.id === id){
-  //       const userToUpdate = {...user}
-  //       userToUpdate.assets.push(asset)
-  //       return userToUpdate
-  //     }
-  //     return user
-  //   })
-  //     setUser(updatedUsers);
-  //   };
+  const addReview = (review) => {
+        const userToUpdate = {...user}
+        userToUpdate.reviews.push(review)
+        setUser(userToUpdate);
+    };
  
 
   return trigger ? (
@@ -60,9 +55,11 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser }) => {
         <form onSubmit={handleSubmit}>
           <label style={{ color: "black" }} >
             Review:
-            <input
+            <input className="submissionfield"
               type="text"
               name="review"
+              spellCheck="true"
+              placeholder="Enter Review"
               value={formData.review}
               onChange={handleChange}
             />
@@ -73,6 +70,7 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser }) => {
             <input
               type="number"
               name="rating"
+              placeholder="1-10"
               max="10"
               value={formData.rating}
               onChange={handleChange}

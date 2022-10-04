@@ -46,3 +46,10 @@
   height: 400px;
   display: block;
 }
+
+.submissionfield { 
+  width: 500px; 
+  height: 200px; 
+  border: 1px solid #999999; 
+  padding: 5px; 
+}

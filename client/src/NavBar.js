@@ -54,6 +54,9 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
             <Button>
               <Link to="/mygames">My Games</Link>
             </Button>
+            <Button>
+              <Link to="/myreviews">My Reviews</Link>
+            </Button>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               Co-opper
             </Typography>

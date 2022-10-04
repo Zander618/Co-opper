@@ -7,6 +7,7 @@ import MyGames from "./MyGames";
 import Login from "./Login";
 import Signup from "./Signup";
 import Game from "./Game";
+import MyReviews from "./MyReviews";
 
 function App() {
   const [games, setGames] = useState([]);
@@ -60,6 +61,7 @@ function App() {
         />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login onLogin={loginUser} />} />
+        <Route path="/myreviews" element={<MyReviews user={user} setUser={setUser}/>} />
         <Route
           path="/games/:id"
           element={
