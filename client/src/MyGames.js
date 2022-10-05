@@ -3,7 +3,6 @@ import "./Game.css";
 // import Select from "react-select";
 
 const MyGames = ({ user, setUser, games }) => {
-  const userId = user.id;
 
   // function handleDeleteClick(e) {
   //   fetch(baseUrl + `/user_games/${e.target.id}`, {
@@ -41,7 +40,7 @@ const MyGames = ({ user, setUser, games }) => {
   const userGame = () =>
     uniqueUserGames.map((usergame) => {
       return (
-        <div className="game">
+        <div className="game" key={usergame.id}>
         <h1>{usergame.name}</h1>
         <img src={usergame.image_url} alt="One Game" />
         <p>Release: {usergame.release}</p>
@@ -60,7 +59,6 @@ const MyGames = ({ user, setUser, games }) => {
   return (
     <div>
       <h1>My Games</h1>
-      {/* {loggedIn ? userGame() : <p>Loading...</p>} */}
       {userGame()}
     </div>
   );

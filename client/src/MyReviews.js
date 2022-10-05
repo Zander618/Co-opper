@@ -3,6 +3,13 @@ import "./Game.css"
 
 const MyReviews = ({ user, setUser }) => {
 
+  function handleDeleteClick(e) {
+    fetch(`/reviews/${e.target.id}`, {
+      method: "DELETE",
+    });
+    console.log(e.target.id)
+  }
+
   console.log("My Reviews", user.reviews)
   return user.games ? (
     <div>
@@ -14,8 +21,8 @@ const MyReviews = ({ user, setUser }) => {
           <h4>Review: </h4>
           <p>{r.review}</p>
           <h5>Rating: {r.rating}</h5>
-          <button>Edit</button>
-          <button>Delete</button>
+          <button >Edit</button>
+          <button onClick={handleDeleteClick} id={r.id}>Delete</button>
         </div>
         )
       })}

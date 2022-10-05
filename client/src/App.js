@@ -17,6 +17,13 @@ function App() {
   console.log("logged in", loggedIn);
   console.log("USER", user)
 
+  // const { user, setUser} = useContext(UserContext)
+  // const { games, setGames} = useContext(UserContext)
+  // const { loggedIn, setLoggedIn} = useContext(UserContext)
+  // const logoutUser = useContext(UserContext)
+  // const loginUser = useContext(UserContext)
+
+
   const loginUser = (currentUser) => {
     setUser(currentUser);
     setLoggedIn(true);

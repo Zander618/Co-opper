@@ -32,8 +32,9 @@ const Game = ({ games, user, setUser }) => {
       });
   };
 
-  const addGameToUserList = () => {
+  const addGameToUserList = (user_games) => {
       const updatedUser = { ...user };
+      updatedUser.games.push(user_games.games)
       setUser(updatedUser);
       alert("Added to My Watch List");
   };
