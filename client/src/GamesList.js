@@ -3,7 +3,7 @@ import GameCard from './GameCard'
 
 const GamesList = ( {games, setGames }) => {
 
-  const gameCards = games.map(game => <GameCard key={game.id} game={game}/>)
+  const gameCards = games.map(game => <GameCard key={game.id} game={game} setGames={setGames}/>)
 
   return (
     <div>

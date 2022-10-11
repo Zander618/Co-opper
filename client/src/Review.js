@@ -3,7 +3,6 @@ import "./Game.css"
 
 const Review = ({ game }) => {
 
-  console.log("Game Reivew User", game)
 
   return game.reviews ? (
     <div>

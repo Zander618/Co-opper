@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./PopUp.css"
 import "./Game.css"
 
-const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user }) => {
+const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, setGame }) => {
   const [formData, setFormData] = useState({
     user_id: userId,
     game_id: gameId,
@@ -25,7 +25,11 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user }) => {
       }),
     })
       .then((resp) => resp.json())
-      .then((data) => addReview(data));
+      .then((data) => {
+        addReview(data)
+        updateUser(data)
+        
+      })
     setFormData({
       user_id: userId,
       game_id: gameId,
@@ -42,10 +46,15 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user }) => {
   };
 
   const addReview = (review) => {
-        const userToUpdate = {...user}
-        userToUpdate.reviews.push(review)
-        setUser(userToUpdate);
+        const gameToUpdate = games.find(game => game.id === gameId)
+        const updatedGame = {...gameToUpdate, reviews: [...gameToUpdate.reviews, review]}
+        setGame(updatedGame);
     };
+
+    const updateUser = (review) => {
+      const updatedUser = {...user, reviews: [...user.reviews, review]}
+      setUser(updatedUser);
+  };
  
 
   return trigger ? (

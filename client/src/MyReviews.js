@@ -7,10 +7,19 @@ const MyReviews = ({ user, setUser }) => {
     fetch(`/reviews/${e.target.id}`, {
       method: "DELETE",
     });
-    console.log(e.target.id)
+    handleDeleteReview(e.target.id);
   }
 
-  console.log("My Reviews", user.reviews)
+  const handleDeleteReview = (r) => {
+    let updatedAttributes
+    const userToUpdate = {...user}
+    updatedAttributes = userToUpdate.reviews.filter(
+      (review) => review.id !== parseInt(r)
+    );
+    userToUpdate.reviews = updatedAttributes
+    setUser(userToUpdate)
+  }
+
   return user.games ? (
     <div>
       {user.reviews.map((r) => {
