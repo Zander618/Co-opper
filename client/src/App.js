@@ -61,7 +61,7 @@ function App() {
         />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login onLogin={loginUser} />} />
-        <Route path="/myreviews" element={<MyReviews user={user} setUser={setUser}/>} />
+        <Route path="/myreviews" element={<MyReviews user={user} setUser={setUser} games={games} setGames={setGames}/>} />
         <Route
           path="/games/:id"
           element={
