@@ -51,7 +51,6 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
       const updatedReview = updatedUser.reviews.map((review) => {
         if (data.id === reviewId) {
           return {
-            ...review,
             id: reviewId,
             user_id: userId,
             game_id: gameId,
@@ -63,8 +62,8 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
         }
       })
       updatedUser.reviews = updatedReview
-      setUser(updateUser)
-      return updateUser
+      setUser(updatedUser)
+      return updatedUser
   };
  
 

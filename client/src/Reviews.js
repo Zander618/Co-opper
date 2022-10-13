@@ -3,7 +3,7 @@ import AddReview from "./AddReview";
 import { useParams } from "react-router-dom";
 import Review from "./Review";
 
-const Reviews = ( {games, gameId, userId, setUser, user, setGames}) => {
+const Reviews = ( {games, gameId, userId, setUser, user, setGames, allUsers}) => {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [game, setGame] = useState({})
   const { id } = useParams();
@@ -38,7 +38,7 @@ const Reviews = ( {games, gameId, userId, setUser, user, setGames}) => {
             <div>
               <h1>Reviews :</h1>
                <div>
-                <Review game={game}/>
+                <Review game={game} allUsers={allUsers}/>
                </div>
             </div>
       </div>

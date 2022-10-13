@@ -1,7 +1,7 @@
 import React from "react";
 import "./Game.css"
 
-const Review = ({ game }) => {
+const Review = ({ game, allUsers }) => {
 
 
   return game.reviews ? (
@@ -9,7 +9,13 @@ const Review = ({ game }) => {
       {game.reviews.map((r) => {
         return (
           <div key={r.id} className="review-card">
-            <h2>Username: {r.user_id}</h2>
+            {allUsers.map((user) => {
+              if(r.user_id === user.id){
+                return(
+                  <h2>Username:  {user.username}</h2>
+                )
+              }
+            })}
             <h4>Review: </h4>
             <p>{r.review}</p>
             <h5>Rating: {r.rating}</h5>

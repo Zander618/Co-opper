@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./Game.css";
 import Reviews from "./Reviews";
 
-const Game = ({ games, user, setUser, setGames }) => {
+const Game = ({ games, user, setUser, setGames, allUsers }) => {
   const [game, setGame] = useState({});
   const { id } = useParams();
 
@@ -52,7 +52,7 @@ const Game = ({ games, user, setUser, setGames }) => {
       </button>
       <br></br>
       <br></br>
-      <Reviews games={games} gameId={game.id} user={user} userId={userId} setUser={setUser} setGames={setGames}/>
+      <Reviews games={games} allUsers={allUsers} gameId={game.id} user={user} userId={userId} setUser={setUser} setGames={setGames}/>
     </div>
   );
 };

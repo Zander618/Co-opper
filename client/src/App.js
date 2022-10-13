@@ -12,10 +12,11 @@ import MyReviews from "./MyReviews";
 function App() {
   const [games, setGames] = useState([]);
   const [user, setUser] = useState(null);
+  const [allUsers, setAllUsers] = useState(null)
   const [loggedIn, setLoggedIn] = useState(false);
 
   console.log("logged in", loggedIn);
-  console.log("USER", user)
+  console.log("USERS", allUsers)
 
   const loginUser = (currentUser) => {
     setUser(currentUser);
@@ -37,6 +38,10 @@ function App() {
     fetch("/games")
       .then((r) => r.json())
       .then(setGames);
+
+    fetch("/users")
+    .then((r) => r.json())
+    .then(setAllUsers);
   }, []);
 
   return (
@@ -71,6 +76,7 @@ function App() {
               user={user}
               setUser={setUser}
               setGames={setGames}
+              allUsers={allUsers}
             />
           }
         />
