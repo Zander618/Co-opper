@@ -12,11 +12,8 @@ import MyReviews from "./MyReviews";
 function App() {
   const [games, setGames] = useState([]);
   const [user, setUser] = useState(null);
-  const [allUsers, setAllUsers] = useState(null)
+  const [allUsers, setAllUsers] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
-
-  console.log("logged in", loggedIn);
-  console.log("USERS", allUsers)
 
   const loginUser = (currentUser) => {
     setUser(currentUser);
@@ -40,11 +37,11 @@ function App() {
       .then(setGames);
 
     fetch("/users")
-    .then((r) => r.json())
-    .then(setAllUsers);
+      .then((r) => r.json())
+      .then(setAllUsers);
   }, []);
 
-  return (
+  return user && games ? (
     <Router>
       <NavBar loggedIn={loggedIn} logoutUser={logoutUser} currentUser={user} />
       <Routes>
@@ -64,9 +61,19 @@ function App() {
             />
           }
         />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup onLogin={loginUser}/>} />
         <Route path="/login" element={<Login onLogin={loginUser} />} />
-        <Route path="/myreviews" element={<MyReviews user={user} setUser={setUser} games={games} setGames={setGames}/>} />
+        <Route
+          path="/myreviews"
+          element={
+            <MyReviews
+              user={user}
+              setUser={setUser}
+              games={games}
+              setGames={setGames}
+            />
+          }
+        />
         <Route
           path="/games/:id"
           element={
@@ -80,6 +87,15 @@ function App() {
             />
           }
         />
+      </Routes>
+    </Router>
+  ) : (
+    <Router>
+      <NavBar loggedIn={loggedIn} logoutUser={logoutUser} currentUser={user} />
+      <Routes>
+        <Route path="/" element={<Home user={user} />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login onLogin={loginUser} />} />
       </Routes>
     </Router>
   );

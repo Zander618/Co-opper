@@ -17,9 +17,9 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
   const handleClick = () => {
     fetch(`/users/${userId}/user_games`, {
       method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         user_id: userId,
         game_id: game.id,
@@ -32,13 +32,14 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
       });
   };
 
-  const addGameToUserList = (user_games) => {
-      const updatedUser = { ...user };
-      updatedUser.games.push(user_games.games)
-      setUser(updatedUser);
-      alert("Added to My Watch List");
+  const addGameToUserList = (user_game) => {
+    const updatedUser = {
+      ...user,
+      user_games: [...user.user_games, user_game],
+    };
+    setUser(updatedUser);
+    alert("Added to My Watch List");
   };
-
 
   return (
     <div className="game">
@@ -52,7 +53,15 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
       </button>
       <br></br>
       <br></br>
-      <Reviews games={games} allUsers={allUsers} gameId={game.id} user={user} userId={userId} setUser={setUser} setGames={setGames}/>
+      <Reviews
+        games={games}
+        allUsers={allUsers}
+        gameId={game.id}
+        user={user}
+        userId={userId}
+        setUser={setUser}
+        setGames={setGames}
+      />
     </div>
   );
 };

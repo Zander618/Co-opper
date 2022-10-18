@@ -29,6 +29,7 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
       .then((resp) => resp.json())
       .then((data) => {
         updateUser(data)
+        setTrigger(false)
       })
     setFormData({
       id: reviewId,
@@ -47,23 +48,12 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
   };
 
     const updateUser = (data) => {
-      const updatedUser = {...user}
-      const updatedReview = updatedUser.reviews.map((review) => {
-        if (data.id === reviewId) {
-          return {
-            id: reviewId,
-            user_id: userId,
-            game_id: gameId,
-            review: data.review,
-            rating: data.rating,
-          }
-        } else {
-          return review
-        }
-      })
-      updatedUser.reviews = updatedReview
-      setUser(updatedUser)
-      return updatedUser
+      console.log("DATA", data)
+      const oldReviews = user.reviews.filter(
+        (review) => review.id !== data.id
+      )
+    const updatedUser = {...user, reviews: [...oldReviews, data]}
+    setUser(updatedUser)
   };
  
 

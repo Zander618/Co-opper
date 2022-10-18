@@ -34,10 +34,13 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
     );
   };
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    logoutUser();
-    navigate("/home")
+  const handleLogout = () => {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then(() => {
+      logoutUser();
+      navigate("/home")
+    })
   };
 
   const loggedInLinks = () => {

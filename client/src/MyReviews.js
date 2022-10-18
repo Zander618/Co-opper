@@ -23,7 +23,6 @@ const MyReviews = ({ user, setUser, games, setGames }) => {
     setUser(userToUpdate);
   };
 
-  console.log("GAMES", games)
 
 
   return user.games ? (
