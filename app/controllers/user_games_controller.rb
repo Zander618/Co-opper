@@ -4,6 +4,15 @@ class UserGamesController < ApplicationController
     user_games = UserGame.all
     render json: user_games
   end
+
+  def show
+    user_game = UserGame.find_by(id: params[:id])
+    if user_game
+      render json: user_game
+    else
+      render json: { error:"User_Game not found"}, status: :not_found
+    end
+  end
     
   def create
     user_game = UserGame.new(user_game_params)
@@ -16,10 +25,8 @@ class UserGamesController < ApplicationController
 
   def destroy
     user_game = UserGame.find_by(id: params[:id])
-    if user_game
-      user_game.destroy
-      head :no_content
-    end
+    user_game.destroy
+    head :no_content
   end
 
 

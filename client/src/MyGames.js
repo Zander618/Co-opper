@@ -2,29 +2,30 @@ import React from "react";
 import "./Game.css";
 // import Select from "react-select";
 
-const MyGames = ({ user, loggedIn, games }) => {
+const MyGames = ({ user, loggedIn, games, setUser }) => {
 
-  // function handleDeleteClick(e) {
-  //   fetch(baseUrl + `/user_games/${e.target.id}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       ...headers,
-  //       ...getToken(),
-  //     },
-  //   });
-  //   handleDeleteUserGame(e.target.id);
-  // }
+console.log("USERID", user.id)
 
-  // const handleDeleteUserGame = (userGameId) => {
-  //   const updatedUser = { ...currentUser };
-  //   updatedUser.user_games = updatedUser.user_games.filter((userGame) => userGame.id !== parseInt(userGameId));
-  //   setCurrentUser(updatedUser);
-  // };
+  function handleDeleteClick(e) {
+    fetch(`/users/${user.id}/user_games/${e.target.id}`, {
+      method: "DELETE",
+    });
+    handleDeleteMyGame(e.target.id);
+  }
+
+  const handleDeleteMyGame= (id) => {
+    let updatedAttributes;
+    const userToUpdate = { ...user };
+    updatedAttributes = userToUpdate.user_games.filter(
+      (userGame) => userGame.id !== parseInt(id)
+    );
+    userToUpdate.user_games = updatedAttributes;
+    setUser(userToUpdate);
+  };
 
   const uniqueIds = [];
 
-  const uniqueUserGames = user.user_games.filter(element => {
-    console.log("element", element.game_id)
+  const uniqueUserGames = user.user_games.filter((element) => {
     const isDuplicate = uniqueIds.includes(element.game_id);
 
     if (!isDuplicate) {
@@ -36,32 +37,26 @@ const MyGames = ({ user, loggedIn, games }) => {
     return false;
   });
 
-  console.log(uniqueUserGames)
-
-
-
   const userGame = () =>
     uniqueUserGames.map((usergame) => {
-      return (
-      games.map((game) => {
-        if(usergame.game_id === game.id)
+      return games.map((game) => {
+        if (usergame.game_id === game.id)
           return (
             <div className="game" key={game.id}>
               <h1>{game.name}</h1>
               <img src={game.image_url} alt="One Game" />
               <p>Release: {game.release}</p>
-              <label>
-                <input type="checkbox"/>
+              {/* <label>
+                <input type="checkbox" />
                 Played
-              </label>
+              </label> */}
               <br></br>
-              <button>
+              <button id={usergame.id} onClick={handleDeleteClick}>
                 Remove from list
               </button>
-          </div>
+            </div>
           );
-      })
-      )
+      });
     });
 
   return loggedIn ? (
@@ -71,7 +66,7 @@ const MyGames = ({ user, loggedIn, games }) => {
     </div>
   ) : (
     <h1>...Loading</h1>
-  )
+  );
 };
 
 export default MyGames;
