@@ -55,9 +55,6 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
               <Link to="/gameslist">Games</Link>
             </Button>
             <Button>
-              <Link to="/mygames">My Games</Link>
-            </Button>
-            <Button>
               <Link to="/myreviews">My Reviews</Link>
             </Button>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>

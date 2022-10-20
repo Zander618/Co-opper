@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     render json: users
   end
 
+  # remove index
+
   def show
     render json: @current_user
   end

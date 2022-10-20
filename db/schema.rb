@@ -36,13 +36,6 @@ ActiveRecord::Schema.define(version: 2022_08_12_183054) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_games", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "game_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -51,6 +44,3 @@ ActiveRecord::Schema.define(version: 2022_08_12_183054) do
   end
 
 end
-
-# allow users to add games
-# 

@@ -41,7 +41,7 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
     alert("Added to My Watch List");
   };
 
-  return games ? (
+  return (
     <div className="game">
       <h1>{game.name}</h1>
       <img src={game.image_url} alt="One Game" />
@@ -64,8 +64,6 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
         setGames={setGames}
       />
     </div>
-  ): (
-    <h1>...Loading</h1>
   )
 };
 

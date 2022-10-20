@@ -3,7 +3,6 @@ import Home from "./Home";
 import NavBar from "./NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GamesList from "./GamesList";
-import MyGames from "./MyGames";
 import Login from "./Login";
 import Signup from "./Signup";
 import Game from "./Game";
@@ -12,7 +11,6 @@ import MyReviews from "./MyReviews";
 function App() {
   const [games, setGames] = useState([]);
   const [user, setUser] = useState(null);
-  const [allUsers, setAllUsers] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
   const loginUser = (currentUser) => {
@@ -35,10 +33,6 @@ function App() {
     fetch("/games")
       .then((r) => r.json())
       .then(setGames);
-
-    fetch("/users")
-      .then((r) => r.json())
-      .then(setAllUsers);
   }, []);
 
   return user && games ? (
@@ -49,17 +43,6 @@ function App() {
         <Route
           path="/gameslist"
           element={<GamesList games={games} setGames={setGames} />}
-        />
-        <Route
-          path="/mygames"
-          element={
-            <MyGames
-              loggedIn={loggedIn}
-              games={games}
-              user={user}
-              setUser={setUser}
-            />
-          }
         />
         <Route path="/signup" element={<Signup onLogin={loginUser}/>} />
         <Route path="/login" element={<Login onLogin={loginUser} />} />
