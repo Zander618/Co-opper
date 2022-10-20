@@ -41,13 +41,14 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
     alert("Added to My Watch List");
   };
 
-  return (
+  return games ? (
     <div className="game">
       <h1>{game.name}</h1>
       <img src={game.image_url} alt="One Game" />
       <p>Release: {game.release}</p>
       <p>IGN Rating: {game.ign_rating ? game.ign_rating : "N/A"}</p>
       <p>Overview: {game.overview}</p>
+      <p>Platform: {game.platform}</p>
       <button onClick={handleClick} id={game.id}>
         Add to your list
       </button>
@@ -63,7 +64,9 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
         setGames={setGames}
       />
     </div>
-  );
+  ): (
+    <h1>...Loading</h1>
+  )
 };
 
 export default Game;
