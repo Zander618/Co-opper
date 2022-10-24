@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./Game.css";
 import Reviews from "./Reviews";
 
-const Game = ({ games, user, setUser, setGames}) => {
+const Game = ({ games, user, setUser, setGames, reviews, setReviews}) => {
   const [game, setGame] = useState({});
   const { id } = useParams();
 
@@ -13,7 +13,6 @@ const Game = ({ games, user, setUser, setGames}) => {
     const game = games.find((g) => g.id.toString() === id);
     setGame(game);
   }, [id]);
-
 
   return game ? (
     <div className="game">
@@ -32,6 +31,8 @@ const Game = ({ games, user, setUser, setGames}) => {
         userId={userId}
         setUser={setUser}
         setGames={setGames}
+        reviews={reviews}
+        setReviews={setReviews}
       />
     </div>
   ) : (

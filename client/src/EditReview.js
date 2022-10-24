@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import "./PopUp.css"
 import "./Game.css"
 
-const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUser }) => {
+const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUser, reviews, setReviews }) => {
   const [formData, setFormData] = useState({
     id: reviewId, 
     user_id: userId,
@@ -28,7 +28,7 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
     })
       .then((resp) => resp.json())
       .then((data) => {
-        updateUser(data)
+        updatedReviews(data)
         setTrigger(false)
       })
     setFormData({
@@ -47,13 +47,13 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
     });
   };
 
-    const updateUser = (data) => {
+    const updatedReviews = (data) => {
       console.log("DATA", data)
-      const oldReviews = user.reviews.filter(
+      const unupdatedReviews = reviews.filter(
         (review) => review.id !== data.id
       )
-    const updatedUser = {...user, reviews: [...oldReviews, data]}
-    setUser(updatedUser)
+    const updatedReviews = [...unupdatedReviews, data]
+    setReviews(updatedReviews)
   };
  
 

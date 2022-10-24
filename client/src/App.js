@@ -11,6 +11,7 @@ import MyReviews from "./MyReviews";
 function App() {
   const [games, setGames] = useState([]);
   const [user, setUser] = useState(null);
+  const [reviews, setReviews] = useState([])
   const [loggedIn, setLoggedIn] = useState(false);
 
   const loginUser = (currentUser) => {
@@ -33,6 +34,10 @@ function App() {
     fetch("/games")
       .then((r) => r.json())
       .then(setGames);
+
+      fetch("/reviews")
+      .then((r) => r.json())
+      .then(setReviews);
   }, []);
 
   return user && games ? (
@@ -54,6 +59,8 @@ function App() {
               setUser={setUser}
               games={games}
               setGames={setGames}
+              reviews={reviews}
+              setReviews={setReviews}
             />
           }
         />
@@ -66,6 +73,8 @@ function App() {
               user={user}
               setUser={setUser}
               setGames={setGames}
+              reviews={reviews}
+              setReviews={setReviews}
             />
           }
         />

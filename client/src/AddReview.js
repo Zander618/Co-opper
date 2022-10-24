@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import "./PopUp.css"
 import "./Game.css"
 
-const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, setGame }) => {
+const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, setGame, reviews, setReviews }) => {
   const [formData, setFormData] = useState({
     user_id: userId,
     game_id: gameId,
     review: "",
     rating: "",
   });
+  console.log("USERID",userId)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,7 +47,7 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
   };
 
   const addReview = (review) => {
-        const gameToUpdate = games.find(game => game.id === gameId)
+        const gameToUpdate = reviews.find(game => game.id === gameId)
         const updatedGame = {...gameToUpdate, reviews: [...gameToUpdate.reviews, review]}
         setGame(updatedGame);
     };
