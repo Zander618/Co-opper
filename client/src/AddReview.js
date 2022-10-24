@@ -27,9 +27,7 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
     })
       .then((resp) => resp.json())
       .then((data) => {
-        addReview(data)
-        updateUser(data)
-        
+        addReview(data)     
       })
     setFormData({
       user_id: userId,
@@ -46,17 +44,11 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
     });
   };
 
-  const addReview = (review) => {
-        const gameToUpdate = reviews.find(game => game.id === gameId)
-        const updatedGame = {...gameToUpdate, reviews: [...gameToUpdate.reviews, review]}
-        setGame(updatedGame);
+  const addReview = (newReview) => {
+        console.log("newReview", newReview)
+        const updatedReviews = [...reviews, newReview]
+        setReviews(updatedReviews);
     };
-
-    const updateUser = (review) => {
-      const updatedUser = {...user, reviews: [...user.reviews, review]}
-      setUser(updatedUser);
-  };
- 
 
   return trigger ? (
     <div className="popup">

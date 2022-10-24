@@ -3,7 +3,7 @@ import "./Game.css";
 
 const Review = ({ game, reviews}) => {
 
-  return game.reviews ? (
+  return reviews ? (
     <div>
       {reviews.map((r) => {
         if(r.game.id === game.id)
