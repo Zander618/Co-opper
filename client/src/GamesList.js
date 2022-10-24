@@ -9,7 +9,9 @@ const GamesList = ({ games, setGames }) => {
     <GameCard key={game.id} game={game} setGames={setGames} />
   ));
 
-  return (
+  console.log("GAMES", games)
+
+  return games ? (
     <div>
       <h1 style={{ alignContent: "center" }}>Games List</h1>
       <button
@@ -24,6 +26,8 @@ const GamesList = ({ games, setGames }) => {
         {gameCards}
       </div>
     </div>
+  ) : (
+    <h1>...Loaging</h1>
   )
 };
 

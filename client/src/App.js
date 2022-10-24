@@ -66,7 +66,6 @@ function App() {
               user={user}
               setUser={setUser}
               setGames={setGames}
-              allUsers={allUsers}
             />
           }
         />

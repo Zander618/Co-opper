@@ -23,7 +23,7 @@ const Signup = ( { onLogin }) => {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => onLogin(user));
-        navigate("/gameslist")
+        // navigate("/gameslist")
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

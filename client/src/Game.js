@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./Game.css";
 import Reviews from "./Reviews";
 
-const Game = ({ games, user, setUser, setGames, allUsers }) => {
+const Game = ({ games, user, setUser, setGames}) => {
   const [game, setGame] = useState({});
   const { id } = useParams();
 
@@ -14,34 +14,8 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
     setGame(game);
   }, [id]);
 
-  const handleClick = () => {
-    fetch(`/users/${userId}/user_games`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_id: userId,
-        game_id: game.id,
-      }),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        addGameToUserList(data);
-        console.log("Added Game Data", data);
-      });
-  };
 
-  const addGameToUserList = (user_game) => {
-    const updatedUser = {
-      ...user,
-      user_games: [...user.user_games, user_game],
-    };
-    setUser(updatedUser);
-    alert("Added to My Watch List");
-  };
-
-  return (
+  return game ? (
     <div className="game">
       <h1>{game.name}</h1>
       <img src={game.image_url} alt="One Game" />
@@ -49,14 +23,10 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
       <p>IGN Rating: {game.ign_rating ? game.ign_rating : "N/A"}</p>
       <p>Overview: {game.overview}</p>
       <p>Platform: {game.platform}</p>
-      <button onClick={handleClick} id={game.id}>
-        Add to your list
-      </button>
       <br></br>
       <br></br>
       <Reviews
         games={games}
-        allUsers={allUsers}
         gameId={game.id}
         user={user}
         userId={userId}
@@ -64,7 +34,10 @@ const Game = ({ games, user, setUser, setGames, allUsers }) => {
         setGames={setGames}
       />
     </div>
+  ) : (
+    <h1>...loading</h1>
   )
 };
+
 
 export default Game;

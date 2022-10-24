@@ -9,6 +9,10 @@ const GameCard = ( {game}) => {
     <div className="movie-card">
       <h3>{game.name}:</h3>
       <img src={game.image_url} alt="video game" height="250" width="200"/>
+      <label>
+        <input type="checkbox" />
+        Played
+      </label>
       <br></br>
       <button onClick={ () => navigate (`/games/${game.id}`) }>Click for more info</button>     
     </div>

@@ -9,6 +9,8 @@ const AddGame = ({ trigger, setTrigger, games, setGames }) => {
     image_url: "",
     platform: "",
     played: false,
+    reviews: [],
+    users: []
   });
 
   const handleSubmit = (event) => {
@@ -26,11 +28,14 @@ const AddGame = ({ trigger, setTrigger, games, setGames }) => {
         image_url: formData.image_url,
         platform: formData.platform,
         played: false,
+        reviews: [],
+        users: []
       }),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        addGame(data);
+        addGame(data)
+        setTrigger(false)
       });
     setFormData({
       name: "",
@@ -40,6 +45,8 @@ const AddGame = ({ trigger, setTrigger, games, setGames }) => {
       image_url: "",
       platform: "",
       played: false,
+      reviews: [],
+      users: []
     });
   };
 
@@ -50,11 +57,9 @@ const AddGame = ({ trigger, setTrigger, games, setGames }) => {
     });
   };
 
-console.log("games", games)
 
   const addGame = (game) => {
-    const newGamesList = { ...games, game };
-    console.log(newGamesList)
+    const newGamesList = [ ...games, game ];
     setGames(newGamesList);
   };
 
