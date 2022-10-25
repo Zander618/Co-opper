@@ -12,7 +12,7 @@ const Game = ({ games, user, setUser, setGames, reviews, setReviews}) => {
   useEffect(() => {
     const game = games.find((g) => g.id.toString() === id);
     setGame(game);
-  }, [id]);
+  }, [id, games]);
 
   return game ? (
     <div className="game">
@@ -36,7 +36,7 @@ const Game = ({ games, user, setUser, setGames, reviews, setReviews}) => {
       />
     </div>
   ) : (
-    <h1>...loading</h1>
+    <h1>Loading...</h1>
   )
 };
 

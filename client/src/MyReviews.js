@@ -14,24 +14,20 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
   }
 
   const handleDeleteReview = (r) => {
-    let updatedAttributes;
-    const userToUpdate = { ...user };
-    updatedAttributes = userToUpdate.reviews.filter(
+    let updatedReviews = reviews.filter(
       (review) => review.id !== parseInt(r)
     );
-    userToUpdate.reviews = updatedAttributes;
-    setUser(userToUpdate);
+    setReviews(updatedReviews);
   };
 
-console.log("user", reviews)
 
-  return user.games ? (
+  return reviews ? (
     <div>
       {reviews.map((r) => {
         if (r.user.id === user.id)
         return (
           <div key={r.id} className="review-card">
-            <h3>name: {r.game.name}</h3>
+            <h3>Game: {r.game.name}</h3>
             <h4>Review: </h4>
             <p>{r.review}</p>
             <h5>Rating: {r.rating}</h5>

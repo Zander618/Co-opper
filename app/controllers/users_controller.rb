@@ -12,6 +12,16 @@ class UsersController < ApplicationController
     render json: users
   end
 
+  def update
+    user = User.find_by(id: params[:id])
+    if user
+      user.update(user_params)
+      render json: user
+    else
+      render json: {error: "Review Not Found"}, status: :not_found
+    end
+  end
+
   # remove index
 
   def show

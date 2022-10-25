@@ -27,7 +27,8 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
     })
       .then((resp) => resp.json())
       .then((data) => {
-        addReview(data)     
+        addReview(data)
+        setTrigger(false)     
       })
     setFormData({
       user_id: userId,
