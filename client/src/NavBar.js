@@ -38,8 +38,8 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
     fetch("/logout", {
       method: "DELETE",
     }).then(() => {
+      navigate("/login")
       logoutUser();
-      navigate("/home")
     })
   };
 

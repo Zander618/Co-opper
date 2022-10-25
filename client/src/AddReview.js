@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./PopUp.css"
 import "./Game.css"
 
-const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, setGame, reviews, setReviews }) => {
+const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, setGame, reviews, setReviews, game }) => {
   const [formData, setFormData] = useState({
     user_id: userId,
     game_id: gameId,
     review: "",
     rating: "",
   });
-  console.log("USERID",userId)
+  console.log("GAME", game)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,6 +28,7 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
       .then((resp) => resp.json())
       .then((data) => {
         addReview(data)
+        updateUser()
         setTrigger(false)     
       })
     setFormData({
@@ -50,6 +51,13 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
         const updatedReviews = [...reviews, newReview]
         setReviews(updatedReviews);
     };
+
+    const updateUser = () => {
+      const updatedUser = {...user}
+      const userGames = [...updatedUser.games, game]
+      updatedUser.games = userGames
+      setUser(updatedUser);
+  };
 
   return trigger ? (
     <div className="popup">
