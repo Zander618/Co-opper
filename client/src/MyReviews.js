@@ -23,6 +23,7 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
 
   return reviews ? (
     <div>
+      <h1 style={{textAlign: "center"}}>My Reviews</h1>
       {reviews.map((r) => {
         if (r.user.id === user.id)
         return (

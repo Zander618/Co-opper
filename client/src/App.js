@@ -47,7 +47,7 @@ function App() {
         <Route path="/" element={<Home user={user} />} />
         <Route
           path="/gameslist"
-          element={<GamesList games={games} setGames={setGames} user={user} />}
+          element={<GamesList games={games} setGames={setGames} user={user} reviews={reviews} />}
         />
         <Route path="/signup" element={<Signup onLogin={loginUser}/>} />
         <Route path="/login" element={<Login onLogin={loginUser} />} />
