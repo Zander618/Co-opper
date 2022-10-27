@@ -14,10 +14,12 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
   }
 
   const handleDeleteReview = (r) => {
-    let updatedReviews = reviews.filter(
+    let updatedReviews = user.reviews.filter(
       (review) => review.id !== parseInt(r)
     );
-    setReviews(updatedReviews);
+    const userToUpdate = {...user}
+    userToUpdate.reviews = updatedReviews
+    setUser(userToUpdate);
   };
 
 

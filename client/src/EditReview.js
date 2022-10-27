@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import "./PopUp.css"
 import "./Game.css"
 
-const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUser, reviews, setReviews }) => {
+const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUser, reviews }) => {
   const [formData, setFormData] = useState({
     id: reviewId, 
     user_id: userId,
@@ -52,8 +52,12 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
         (review) => review.id !== data.id
       )
     const updatedReviews = [...unupdatedReviews, data]
-    setReviews(updatedReviews)
+    const updatedUserReviews = updatedReviews.filter((userReview) => userReview.user.id === user.id)
+    const updatedUser = {...user}
+    updatedUser.reviews = updatedUserReviews
+    setUser(updatedUser);
   };
+
  
 
   return trigger ? (

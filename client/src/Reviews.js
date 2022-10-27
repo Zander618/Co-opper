@@ -3,7 +3,7 @@ import AddReview from "./AddReview";
 import { useParams } from "react-router-dom";
 import Review from "./Review";
 
-const Reviews = ({ games, gameId, userId, setUser, user, reviews, setReviews }) => {
+const Reviews = ({ games, gameId, userId, setUser, user, reviews, setReviews, setGames }) => {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [game, setGame] = useState({});
   const { id } = useParams();
@@ -11,9 +11,9 @@ const Reviews = ({ games, gameId, userId, setUser, user, reviews, setReviews }) 
   useEffect(() => {
     const game = games.find((g) => g.id.toString() === id);
     setGame(game);
-  }, [id]);
+  }, [id, games]);
 
-  return (
+  return user && games ? (
     <div>
       <button
         onClick={() => {
@@ -32,6 +32,7 @@ const Reviews = ({ games, gameId, userId, setUser, user, reviews, setReviews }) 
         game={game}
         games={games}
         setGame={setGame}
+        setGames={setGames}
         reviews={reviews}
         setReviews={setReviews}
       />
@@ -44,7 +45,9 @@ const Reviews = ({ games, gameId, userId, setUser, user, reviews, setReviews }) 
         </div>
       </div>
     </div>
-  );
+  ) : (
+    <h1>...Loading</h1>
+  )
 };
 
 export default Reviews;

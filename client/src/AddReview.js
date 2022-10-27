@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./PopUp.css"
 import "./Game.css"
 
-const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, setGame, reviews, setReviews, game }) => {
+const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, setGame, reviews, setReviews, game, setGames }) => {
   const [formData, setFormData] = useState({
     user_id: userId,
     game_id: gameId,
     review: "",
     rating: "",
   });
-  console.log("GAME", game)
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,8 +27,9 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
     })
       .then((resp) => resp.json())
       .then((data) => {
-        addReview(data)
-        updateUser()
+        addReviewToGame(data)
+        // addReviewToGames(data)
+        addReviewToUser(data)
         setTrigger(false)     
       })
     setFormData({
@@ -46,17 +47,24 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
     });
   };
 
-  const addReview = (newReview) => {
-        console.log("newReview", newReview)
-        const updatedReviews = [...reviews, newReview]
-        setReviews(updatedReviews);
+  const addReviewToGame= (newReview) => {
+        const updatedGame = {...game, reviews: [...game.reviews, newReview]} 
+        setGame(updatedGame);
     };
 
-    const updateUser = () => {
-      const updatedUser = {...user}
-      const userGames = [...updatedUser.games, game]
-      updatedUser.games = userGames
+  //   const addReviewToGames= (newReview) => {
+  //     const updatedGame = {...game, reviews: [...game.reviews, newReview]} 
+  //     let unupdatedGames = games.filter(
+  //       (g) => g.id !== gameId
+  //     );
+  //     const updatedGames = [...unupdatedGames, updatedGame]
+  //     setGames(updatedGames);
+  // };
+
+    const addReviewToUser= (newReview) => {
+      const updatedUser = {...user, reviews: [...user.reviews, newReview], games: [...user.games, game]}
       setUser(updatedUser);
+      console.log(updatedUser)
   };
 
   return trigger ? (
