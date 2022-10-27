@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import AddGame from "./AddGame";
 import GameCard from "./GameCard";
 
-const GamesList = ({ games, setGames, user, reviews }) => {
+const GamesList = ({ games, setGames, user}) => {
   const [buttonPopup, setButtonPopup] = useState(false);
 
   const gameCards = games.map((game) => (
-    <GameCard key={game.id} game={game} user={user} reviews={reviews}/>
+    <GameCard key={game.id} game={game} user={user}/>
   ));
 
   return games ? (

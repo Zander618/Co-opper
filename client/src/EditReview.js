@@ -48,7 +48,6 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
   };
 
     const updatedReviews = (data) => {
-      console.log("DATA", data)
       const unupdatedReviews = reviews.filter(
         (review) => review.id !== data.id
       )

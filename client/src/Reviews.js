@@ -13,8 +13,6 @@ const Reviews = ({ games, gameId, userId, setUser, user, reviews, setReviews }) 
     setGame(game);
   }, [id]);
 
-  console.log("GAME WITHIN REVIEW", game)
-
   return (
     <div>
       <button

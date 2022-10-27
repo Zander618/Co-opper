@@ -331,5 +331,5 @@ For additional support, check out these guides on Heroku:
 
 
 
-
+have postgres running before starting rails server
 sudo service postgresql start

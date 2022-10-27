@@ -24,11 +24,10 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
   return reviews ? (
     <div>
       <h1 style={{textAlign: "center"}}>My Reviews</h1>
-      {reviews.map((r) => {
-        if (r.user.id === user.id)
+      {user.reviews.map((r) => {
         return (
           <div key={r.id} className="review-card">
-            <h3>Game: {r.game.name}</h3>
+            <h3>Game: {r.game_name}</h3>
             <h4>Review: </h4>
             <p>{r.review}</p>
             <h5>Rating: {r.rating}</h5>
