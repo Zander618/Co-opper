@@ -28,7 +28,6 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
       .then((resp) => resp.json())
       .then((data) => {
         addReviewToGame(data)
-        // addReviewToGames(data)
         addReviewToUser(data)
         setTrigger(false)     
       })
@@ -51,15 +50,6 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
         const updatedGame = {...game, reviews: [...game.reviews, newReview]} 
         setGame(updatedGame);
     };
-
-  //   const addReviewToGames= (newReview) => {
-  //     const updatedGame = {...game, reviews: [...game.reviews, newReview]} 
-  //     let unupdatedGames = games.filter(
-  //       (g) => g.id !== gameId
-  //     );
-  //     const updatedGames = [...unupdatedGames, updatedGame]
-  //     setGames(updatedGames);
-  // };
 
     const addReviewToUser= (newReview) => {
       const updatedUser = {...user, reviews: [...user.reviews, newReview], games: [...user.games, game]}
