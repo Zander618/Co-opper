@@ -7,11 +7,6 @@ class UsersController < ApplicationController
     render json: user, status: :created
   end
 
-  def index
-    users = User.all
-    render json: users
-  end
-
   def update
     user = User.find_by(id: params[:id])
     if user
@@ -21,8 +16,6 @@ class UsersController < ApplicationController
       render json: {error: "Review Not Found"}, status: :not_found
     end
   end
-
-  # remove index
 
   def show
     render json: @current_user
