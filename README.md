@@ -17,7 +17,9 @@ have postgres running before starting rails server
 in the terminal run "sudo service postgresql start"
 if postgres is not installed directions are provided below
 
-THIRD 
+THIRD
+run "rails db:migrate" and "rails db:seed"
+and then 
 start the rails server
 "rails s"
 
