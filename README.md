@@ -107,6 +107,3 @@ service:
 ```sh
 brew services start postgresql
 ```
-
-
-HI Hi
