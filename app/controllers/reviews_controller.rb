@@ -16,12 +16,16 @@ class ReviewsController < ApplicationController
 
   def create
     review = Review.create(review_params)
+    if @current_user
     render json: review, status: :created
+    else
+      render json: { error: "Unable to create" }, status: :unprocessable_entity
+    end
   end
 
   def update
     review = Review.find_by(id: params[:id])
-    if review 
+    if review.user_id == @current_user.id
       review.update(review_params)
       render json: review
     else
@@ -31,8 +35,10 @@ class ReviewsController < ApplicationController
 
   def destroy
     review = Review.find_by(id: params[:id])
-    review.destroy
-    head:no_content
+    if review.user_id == @current_user.id
+      review.destroy
+      head:no_content
+    end
   end
 
   private
@@ -42,3 +48,4 @@ class ReviewsController < ApplicationController
   end
 
 end
+
