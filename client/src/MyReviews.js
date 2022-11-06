@@ -11,7 +11,9 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
       method: "DELETE",
     });
     handleDeleteReview(e.target.id);
+    handleDeleteGame(e)
   }
+  console.log("GAME REviews", reviews)
 
   const handleDeleteReview = (r) => {
     let updatedReviews = user.reviews.filter(
@@ -22,12 +24,28 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
     setUser(userToUpdate);
   };
 
+  const handleDeleteGame = (g) => {
+    const gamesToUpdate = [...games]
+    let gameToUpdate = gamesToUpdate.find(
+      (game) => game.id === parseInt(g.target.attributes.gamenumber.value)
+    );
+    let unremovedReview = gameToUpdate.reviews.filter(
+      (review) => review.id !== parseInt(g.target.id)
+    )
+    let unupdatedGames = gamesToUpdate.filter(
+      (game) => game.id !== parseInt(g.target.attributes.gamenumber.value)
+    );
+    gameToUpdate.reviews = unremovedReview
+    let updatedGames = [...unupdatedGames, gameToUpdate]
+    setGames(updatedGames);
+  }
+
 
   return reviews ? (
     <div>
       <h1 style={{textAlign: "center"}}>My Reviews</h1>
       {user.reviews.map((r) => {
-        return (
+        return (      
           <div key={r.id} className="review-card">
             <h3>Game: {r.game_name}</h3>
             <h4>Review: </h4>
@@ -44,7 +62,11 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
             {r.id === popUpId && (
             <EditReview trigger={buttonPopup} setTrigger={setButtonPopup} reviewId={popUpId} userId={r.user_id} gameId={r.game_id} user={user} setUser={setUser} games={games} setGames={setGames} reviews={reviews} setReviews={setReviews}/>
             )}
-            <button onClick={handleDeleteClick} id={r.id}>
+            <button id={r.id} gamenumber={r.game_id}
+                   onClick={(e) => {
+                    handleDeleteClick(e)
+                  }}
+                >
               Delete
             </button>
           </div>
@@ -57,3 +79,4 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
 };
 
 export default MyReviews;
+

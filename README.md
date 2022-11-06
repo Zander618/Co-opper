@@ -24,7 +24,7 @@ start the rails server
 "rails s"
 
 FOURTH
-Use "npm install" to get the packages for the frontend.
+Use "npm install --prefix client" to get the packages for the frontend.
 
 FIFTH
 start the frontend client
