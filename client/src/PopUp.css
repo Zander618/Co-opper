@@ -3,9 +3,11 @@
   left: 0;
   width: 100%;
   height: 30vh;
+  padding: 110px;
   display:flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .popup-inner{
@@ -15,12 +17,13 @@ padding:20px;
 width: 100%;
 max-width: 1000px;
 background-color: rgb(255, 255, 255); 
+border-style: solid;
 }
 
 .popup-inner .close-btn{
 position:absolute;
 top:16px;
-right: 16px;
+right:5px;
 }
 
 .edit-popup {

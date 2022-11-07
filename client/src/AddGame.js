@@ -66,7 +66,7 @@ const AddGame = ({ trigger, setTrigger, games, setGames }) => {
   return trigger ? (
     <div className="popup">
       <div className="popup-inner">
-        <h3 style={{ color: "black" }}>Add Review</h3>
+        <h3 style={{ color: "black" }}>Add Game</h3>
         <form onSubmit={handleSubmit}>
           <label style={{ color: "black" }}>
             Name:
