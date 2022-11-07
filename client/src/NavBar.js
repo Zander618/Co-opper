@@ -52,7 +52,7 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
               <Link to="/">Home</Link>
             </Button>
             <Button>
-              <Link to="/gameslist">Games</Link>
+              <Link to="/games">Games</Link>
             </Button>
             <Button>
               <Link to="/myreviews">My Reviews</Link>

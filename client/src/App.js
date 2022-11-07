@@ -11,7 +11,7 @@ import MyReviews from "./MyReviews";
 function App() {
   const [games, setGames] = useState([]);
   const [user, setUser] = useState(null);
-  const [reviews, setReviews] = useState([])
+  // const [reviews, setReviews] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
 
   const loginUser = (currentUser) => {
@@ -35,9 +35,9 @@ function App() {
       .then((r) => r.json())
       .then(setGames);
 
-      fetch("/reviews")
-      .then((r) => r.json())
-      .then(setReviews);
+    // fetch("/reviews")
+    //   .then((r) => r.json())
+    //   .then(setReviews);
   }, []);
 
   return user && games ? (
@@ -46,10 +46,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={user} />} />
         <Route
-          path="/gameslist"
-          element={<GamesList games={games} setGames={setGames} user={user} reviews={reviews} />}
+          path="/games"
+          element={
+            <GamesList
+              games={games}
+              setGames={setGames}
+              user={user}
+            />
+          }
         />
-        <Route path="/signup" element={<Signup onLogin={loginUser}/>} />
+        <Route path="/signup" element={<Signup onLogin={loginUser} />} />
         <Route path="/login" element={<Login onLogin={loginUser} />} />
         <Route
           path="/myreviews"
@@ -59,8 +65,6 @@ function App() {
               setUser={setUser}
               games={games}
               setGames={setGames}
-              reviews={reviews}
-              setReviews={setReviews}
             />
           }
         />
@@ -68,13 +72,10 @@ function App() {
           path="/games/:id"
           element={
             <Game
-              loggedIn={loggedIn}
               games={games}
               user={user}
               setUser={setUser}
               setGames={setGames}
-              reviews={reviews}
-              setReviews={setReviews}
             />
           }
         />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import EditReview from "./EditReview";
 import "./Game.css";
 
-const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
+const MyReviews = ({ user, setUser, games, setGames }) => {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [popUpId, setPopUpId] = useState();
 
@@ -43,7 +43,7 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
     setGames(updatedGames);
   };
 
-  return reviews ? (
+  return user.reviews ? (
     <div>
       <h1 style={{ textAlign: "center" }}>My Reviews</h1>
       {user.reviews.sort((a, b) => a.game_name > b.game_name ? 1 : -1).map((r) => {
@@ -75,8 +75,6 @@ const MyReviews = ({ user, setUser, games, setGames, reviews, setReviews }) => {
                 setGames={setGames}
                 reviewText={r.review}
                 reviewRating={r.rating}
-                reviews={reviews}
-                setReviews={setReviews}
               />
             )}
             <button

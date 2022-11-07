@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./Game.css";
 import Reviews from "./Reviews";
 
-const Game = ({ games, user, setUser, setGames, reviews, setReviews}) => {
+const Game = ({ games, user, setUser, setGames}) => {
   const [game, setGame] = useState({});
   const { id } = useParams();
 
@@ -31,8 +31,6 @@ const Game = ({ games, user, setUser, setGames, reviews, setReviews}) => {
         userId={userId}
         setUser={setUser}
         setGames={setGames}
-        reviews={reviews}
-        setReviews={setReviews}
       />
     </div>
   ) : (
