@@ -5,7 +5,7 @@ import GameCard from "./GameCard";
 const GamesList = ({ games, setGames, user}) => {
   const [buttonPopup, setButtonPopup] = useState(false);
 
-  const gameCards = games.map((game) => (
+  const gameCards = games.sort((a, b) => a.name > b.name ? 1 : -1).map((game) => (
     <GameCard key={game.id} game={game} user={user}/>
   ));
 

@@ -5,7 +5,7 @@ const Review = ({ game }) => {
 
   return game.name ? (
     <div>
-      {game.reviews.map((r) => {
+      {game.reviews.sort((a, b) => a.id > b.id ? 1 : -1).map((r) => {
         return (
           <div key={r.id} className="review-card">
             <h2>Username: {r.reviewer_username}</h2>

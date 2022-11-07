@@ -2,13 +2,13 @@ import React, {useState} from 'react'
 import "./PopUp.css"
 import "./Game.css"
 
-const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUser, reviews }) => {
+const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUser, games, setGames, reviewText, reviewRating }) => {
   const [formData, setFormData] = useState({
     id: reviewId, 
     user_id: userId,
     game_id: gameId,
-    review: "",
-    rating: "",
+    review: reviewText,
+    rating: reviewRating,
   });
 
   const handleSubmit = (event) => {
@@ -28,7 +28,8 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
     })
       .then((resp) => resp.json())
       .then((data) => {
-        updatedReviews(data)
+        updatedUserReviews(data)
+        updatedGameReviews(data)
         setTrigger(false)
       })
     setFormData({
@@ -47,18 +48,33 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
     });
   };
 
-    const updatedReviews = (data) => {
-      const unupdatedReviews = reviews.filter(
+    const updatedUserReviews = (data) => {
+      const unupdatedReviews = user.reviews.filter(
         (review) => review.id !== data.id
       )
     const updatedReviews = [...unupdatedReviews, data]
-    const updatedUserReviews = updatedReviews.filter((userReview) => userReview.user.id === user.id)
     const updatedUser = {...user}
-    updatedUser.reviews = updatedUserReviews
+    updatedUser.reviews = updatedReviews
     setUser(updatedUser);
   };
 
- 
+  const updatedGameReviews = (data) => {
+    let spreadGames = [...games]
+    let gameToUpdate = spreadGames.find(
+      (game) => game.id === data.game_id
+    );
+    let unupdatedGameReviews = gameToUpdate.reviews.filter(
+      (review) => review.id !== data.id
+    );
+    let unupdatedGames = spreadGames.filter(
+      (game) => game.id !== data.game_id
+    );
+  gameToUpdate.reviews = [...unupdatedGameReviews, data]
+  let updatedGames = [...unupdatedGames, gameToUpdate]
+  setGames(updatedGames)
+};
+
+ console.log("REviewTEXT", reviewText)
 
   return trigger ? (
     <div className="edit-review-card">
@@ -71,7 +87,6 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
               type="text"
               name="review"
               spellCheck="true"
-              placeholder="Enter Review"
               value={formData.review}
               onChange={handleChange}
             />
@@ -82,7 +97,6 @@ const EditReview = ({reviewId, trigger, setTrigger, userId, user, gameId, setUse
             <input
               type="number"
               name="rating"
-              placeholder="1-10"
               max="10"
               value={formData.rating}
               onChange={handleChange}

@@ -1,15 +1,27 @@
 import React, { useState } from "react";
-import "./PopUp.css"
-import "./Game.css"
+import "./PopUp.css";
+import "./Game.css";
 
-const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, setGame, reviews, setReviews, game, setGames }) => {
+const AddReview = ({
+  trigger,
+  setTrigger,
+  gameId,
+  userId,
+  setUser,
+  user,
+  games,
+  setGame,
+  reviews,
+  setReviews,
+  game,
+  setGames,
+}) => {
   const [formData, setFormData] = useState({
     user_id: userId,
     game_id: gameId,
     review: "",
     rating: "",
   });
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,10 +39,10 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
     })
       .then((resp) => resp.json())
       .then((data) => {
-        addReviewToGame(data)
-        addReviewToUser(data)
-        setTrigger(false)     
-      })
+        addReviewToGame(data);
+        addReviewToUser(data);
+        setTrigger(false);
+      });
     setFormData({
       user_id: userId,
       game_id: gameId,
@@ -46,15 +58,18 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
     });
   };
 
-  const addReviewToGame= (newReview) => {
-        const updatedGame = {...game, reviews: [...game.reviews, newReview]} 
-        setGame(updatedGame);
-    };
+  const addReviewToGame = (newReview) => {
+    const updatedGame = { ...game, reviews: [...game.reviews, newReview] };
+    setGame(updatedGame);
+  };
 
-    const addReviewToUser= (newReview) => {
-      const updatedUser = {...user, reviews: [...user.reviews, newReview], games: [...user.games, game]}
-      setUser(updatedUser);
-      console.log(updatedUser)
+  const addReviewToUser = (newReview) => {
+    const updatedUser = {
+      ...user,
+      reviews: [...user.reviews, newReview],
+      games: [...user.games, game],
+    };
+    setUser(updatedUser);
   };
 
   return trigger ? (
@@ -62,9 +77,10 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
       <div className="popup-inner">
         <h3 style={{ color: "black" }}>Add Review</h3>
         <form onSubmit={handleSubmit}>
-          <label style={{ color: "black" }} >
+          <label style={{ color: "black" }}>
             Review:
-            <input className="submissionfield"
+            <input
+              className="submissionfield"
               type="text"
               name="review"
               spellCheck="true"
@@ -74,7 +90,7 @@ const AddReview = ({ trigger, setTrigger, gameId, userId, setUser, user, games, 
             />
           </label>
           <br></br>
-          <label style={{ color: "black" }} >
+          <label style={{ color: "black" }}>
             Rating:
             <input
               type="number"
