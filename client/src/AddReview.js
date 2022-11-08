@@ -9,12 +9,8 @@ const AddReview = ({
   userId,
   setUser,
   user,
-  games,
   setGame,
-  reviews,
-  setReviews,
   game,
-  setGames,
 }) => {
   const [formData, setFormData] = useState({
     user_id: userId,

@@ -23,6 +23,11 @@ class GamesController < ApplicationController
     render json: game, status: :created
   end
 
+  def search
+    results = Game.search(params[:name])
+    render json: results
+  end
+
   private
 
   def game_params
