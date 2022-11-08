@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -18,6 +19,8 @@ const Login = ({ onLogin }) => {
       if (r.ok) {
         r.json().then((user) => onLogin(user));
         navigate("/");
+      } else {
+        r.json().then((errorData) => setErrors(errorData.errors));
       }
     });
   }
@@ -46,6 +49,13 @@ const Login = ({ onLogin }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        {errors.length > 0 && (
+          <ul style={{ color: "red" }}>
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        )}
         <input type="submit" value="Login" />
       </form>
     </div>
