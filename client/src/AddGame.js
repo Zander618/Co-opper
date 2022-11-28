@@ -8,7 +8,6 @@ const AddGame = ({ trigger, setTrigger, games, setGames }) => {
     overview: "",
     image_url: "",
     platform: "",
-    played: false,
     reviews: [],
     users: []
   });
@@ -27,7 +26,6 @@ const AddGame = ({ trigger, setTrigger, games, setGames }) => {
         overview: formData.overview,
         image_url: formData.image_url,
         platform: formData.platform,
-        played: false,
         reviews: [],
         users: []
       }),
@@ -44,7 +42,6 @@ const AddGame = ({ trigger, setTrigger, games, setGames }) => {
       overview: "",
       image_url: "",
       platform: "",
-      played: false,
       reviews: [],
       users: []
     });

@@ -23,15 +23,28 @@ class GamesController < ApplicationController
     render json: game, status: :created
   end
 
+  #check if you can do search with a simple .find
+  # def self.search(name)
+  #   game =  Game.select{|game| game.name.include?(name)}
+  #   game
+  # end
+
   def search
-    results = Game.search(params[:name])
-    render json: results
+    game = Game.find_by(name: params[:name])
+    render json: game
   end
+
+  def high_ratings
+    reviews = Review.select{|review| review.rating > 9}
+    hr_games = reviews.map{|r| r.game}
+    render json: hr_games
+  end
+
 
   private
 
   def game_params
-    params.permit(:name, :release, :ign_rating, :overview, :image_url, :platform, :played)
+    params.permit(:name, :release, :ign_rating, :overview, :image_url, :platform)
   end
 
 end

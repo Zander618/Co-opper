@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
-
+  
   def index
-    review = Review.all
-    render json: review
+    reviews = Review.all
+    render json: reviews
   end
 
   def show
@@ -32,6 +32,7 @@ class ReviewsController < ApplicationController
       render json: {error: "Review Not Found"}, status: :not_found
     end
   end
+
 
   def destroy
     review = Review.find_by(id: params[:id])
