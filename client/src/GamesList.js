@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddGame from "./AddGame";
 import GameCard from "./GameCard";
 
 
 const GamesList = ({ games, setGames, user }) => {
+  const [favGame, setFavGame] = useState ([])
   const [buttonPopup, setButtonPopup] = useState(false);
   // const [formData, setFormData] = useState({name: ""});
+
+  useEffect(() => {
+    fetch("/favorite_game")
+      .then((r) => r.json())
+      .then(setFavGame);
+  }, []);
+ 
+  console.log("favGame", favGame)
 
   const gameCards = games
     .sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -25,12 +34,17 @@ const GamesList = ({ games, setGames, user }) => {
   //     .then((data) => console.log(data));
   // }
 
+
+
+
   return games ? (
     <div>
       <h1 style={{ textAlign: "center" }}>Games List</h1>
       <h2 style={{ textAlign: "center" }}>
         Write a review to mark played as "Yes".
       </h2>
+      
+      <GameCard key={favGame.id} game={favGame} user={user} />
       <button
         onClick={() => {
           setButtonPopup(true);

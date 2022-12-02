@@ -15,16 +15,15 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/search/:name", to: "games#search"
   get "/ratings", to:"games#high_ratings"
+  get "/favorite_game", to:"users#favorite_game"
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 
 end
 
-# Build a custom route which sends us to the games controller and returns all games 
-# that have any reviews which received a rating of 9 or higher. 
-# Send back the information as json.
+# part 1 find current users highest rated game (favorite game)
+# part 2 automatically render users favorite game above listed games in gamelist component
 
-# Games controller is goin to
-# build action in games controller
-#  find reviews higher than 9
-# pull the game_ids from the found reviews
-# with the array of game_ids map to return the array games
+# create a route called favorite_game
+# in user controller order game by  highest rating return first
+# fetch the route
+#  display the route

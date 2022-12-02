@@ -23,12 +23,6 @@ class GamesController < ApplicationController
     render json: game, status: :created
   end
 
-  #check if you can do search with a simple .find
-  # def self.search(name)
-  #   game =  Game.select{|game| game.name.include?(name)}
-  #   game
-  # end
-
   def search
     game = Game.find_by(name: params[:name])
     render json: game
@@ -39,7 +33,6 @@ class GamesController < ApplicationController
     hr_games = reviews.map{|r| r.game}
     render json: hr_games
   end
-
 
   private
 

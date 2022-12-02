@@ -21,6 +21,13 @@ class UsersController < ApplicationController
     render json: @current_user
   end
 
+  def favorite_game
+    user = @current_user
+    top_reviews = user.reviews.order(rating: :desc)
+    fav_game = top_reviews.first.game
+    render json: fav_game
+  end
+
   private
 
   def user_params
