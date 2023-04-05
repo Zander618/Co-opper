@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
   get "/me", to: "users#show"
 
   resources :games
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   get "/search/:name", to: "games#search"
   get "/ratings", to:"games#high_ratings"
   get "/favorite_game", to:"users#favorite_game"
-  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+  
 
 end
 
