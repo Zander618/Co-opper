@@ -6,6 +6,13 @@ const GameCard = ({ game, user }) => {
 
   const navigate = useNavigate();
 
+  function handleDeleteClick(e) {
+    fetch(`/games/${e.target.id}`, {
+      method: "DELETE",
+    });
+    handleDeleteGame(e);
+  }
+
 
   const havePlayed = user.games.find(usergame => usergame.id === game.id)
 
@@ -19,6 +26,15 @@ const GameCard = ({ game, user }) => {
       <button onClick={() => navigate(`/games/${game.id}`)}>
         Click for more info
       </button>
+      <button
+              id={game.id}
+              gamenumber={game.id}
+              onClick={(e) => {
+                handleDeleteClick(e);
+              }}
+            >
+              Delete
+            </button>
     </div>
   );
 };

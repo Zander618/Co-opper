@@ -14,7 +14,6 @@ const GamesList = ({ games, setGames, user }) => {
       .then(setFavGame);
   }, []);
  
-  console.log("favGame", favGame)
 
   const gameCards = games
     .sort((a, b) => (a.name > b.name ? 1 : -1))

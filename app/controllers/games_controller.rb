@@ -34,6 +34,14 @@ class GamesController < ApplicationController
     render json: hr_games
   end
 
+  def destroy
+    game = Game.find_by(id: params[:id])
+    if game.user_id == @current_user.id
+      game.destroy
+      head:no_content
+    end
+  end
+
   private
 
   def game_params
