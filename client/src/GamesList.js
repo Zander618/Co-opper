@@ -44,7 +44,7 @@ const GamesList = ({ games, setGames, user }) => {
         Write a review to mark played as "Yes".
       </h2>
       
-      <GameCard key={favGame.id} game={favGame} user={user} />
+      {/* <GameCard key={favGame.id} game={favGame} user={user} /> */}
       <button
         onClick={() => {
           setButtonPopup(true);
