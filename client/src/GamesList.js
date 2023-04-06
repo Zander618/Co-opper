@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AddGame from "./AddGame";
 import GameCard from "./GameCard";
 
 
 const GamesList = ({ games, setGames, user }) => {
-  const [favGame, setFavGame] = useState ([])
+  // const [favGame, setFavGame] = useState ([])
   const [buttonPopup, setButtonPopup] = useState(false);
   // const [formData, setFormData] = useState({name: ""});
 
-  useEffect(() => {
-    fetch("/favorite_game")
-      .then((r) => r.json())
-      .then(setFavGame);
-  }, []);
+  // useEffect(() => {
+  //   fetch("/favorite_game")
+  //     .then((r) => r.json())
+  //     .then(setFavGame);
+  // }, []);
  
 
   const gameCards = games

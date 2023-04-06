@@ -10,7 +10,7 @@ const GameCard = ({ game, user }) => {
     fetch(`/games/${e.target.id}`, {
       method: "DELETE",
     });
-    handleDeleteGame(e);
+    // handleDeleteGame(e);
   }
 
 

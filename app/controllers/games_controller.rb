@@ -36,10 +36,8 @@ class GamesController < ApplicationController
 
   def destroy
     game = Game.find_by(id: params[:id])
-    if game.user_id == @current_user.id
       game.destroy
       head:no_content
-    end
   end
 
   private
