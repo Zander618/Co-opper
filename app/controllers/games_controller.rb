@@ -34,11 +34,11 @@ class GamesController < ApplicationController
     render json: hr_games
   end
 
-  def destroy
-    game = Game.find_by(id: params[:id])
-      game.destroy
-      head:no_content
-  end
+  # def destroy
+  #   game = Game.find_by(id: params[:id])
+  #     game.destroy
+  #     head:no_content
+  # end
 
   private
 
