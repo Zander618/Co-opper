@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./App.css";
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
@@ -28,7 +29,7 @@ const Login = ({ onLogin }) => {
   return (
     <div className="card">
       <div className="login-card">
-        <h1>Login</h1>
+        <h1>Log in</h1>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username">Username: </label>
