@@ -18,6 +18,8 @@ function App() {
     setLoggedIn(true);
   };
 
+  console.log(loginUser)
+
   const logoutUser = () => {
     setUser({});
     setLoggedIn(false);
@@ -39,7 +41,7 @@ function App() {
     <Router>
       <NavBar loggedIn={loggedIn} logoutUser={logoutUser} currentUser={user} />
       <Routes>
-        <Route path="/" element={<Home user={user} loggedIn={loggedIn}/>} />
+        <Route path="/" element={<Home user={user} loggedIn={loggedIn} setUser={setUser} setLoggedIn={setLoggedIn}/>} />
         <Route
           path="/games"
           element={
@@ -51,7 +53,7 @@ function App() {
           }
         />
         <Route path="/signup" element={<Signup onLogin={loginUser} />} />
-        <Route path="/login" element={<Login onLogin={loginUser} />} />
+        <Route path="/login" element={<Login setUser={setUser} setLoggedIn={setLoggedIn}/>} />
         <Route
           path="/myreviews"
           element={
