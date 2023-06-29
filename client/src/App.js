@@ -39,7 +39,7 @@ function App() {
     <Router>
       <NavBar loggedIn={loggedIn} logoutUser={logoutUser} currentUser={user} />
       <Routes>
-        <Route path="/" element={<Home user={user} />} />
+        <Route path="/" element={<Home user={user} loggedIn={loggedIn}/>} />
         <Route
           path="/games"
           element={
