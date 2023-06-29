@@ -18,8 +18,6 @@ function App() {
     setLoggedIn(true);
   };
 
-  console.log(loginUser)
-
   const logoutUser = () => {
     setUser({});
     setLoggedIn(false);
