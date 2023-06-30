@@ -24,16 +24,30 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("/me").then((r) => {
+    fetch("/me")
+    .then((r) => {
       if (r.ok) {
-        r.json().then((user) => loginUser(user));
+        return r.json();
+      } else {
+        throw new Error("Failed to fetch user data");
       }
+    })
+    .then((user) => {
+      loginUser(user);
+      return fetch("/games");
+    })
+    .then((r) => {
+      if (r.ok) {
+        return r.json();
+      } else {
+        throw new Error("Failed to fetch games data");
+      }
+    })
+    .then(setGames)
+    .catch((error) => {
+      console.error(error);
     });
-
-    fetch("/games")
-      .then((r) => r.json())
-      .then(setGames);
-  }, []);
+}, []);
 
   return loggedIn ? (
     <Router>
