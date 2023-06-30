@@ -2,7 +2,7 @@ import React from "react";
 import "./Game.css";
 import Login from "./Login";
 
-const Home = ({ loggedIn, setUser, setLoggedIn}) => {
+const Home = ({ loggedIn, loginUser}) => {
   return (
     <div>
       {loggedIn ? (
@@ -31,7 +31,7 @@ const Home = ({ loggedIn, setUser, setLoggedIn}) => {
         
       </div>
       ) : (
-        <Login setUser={setUser} setLoggedIn={setLoggedIn}/>
+        <Login loginUser={loginUser}/>
       )}
     </div>
   );

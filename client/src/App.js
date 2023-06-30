@@ -14,6 +14,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const loginUser = (currentUser) => {
+    console.log(currentUser)
     setUser(currentUser);
     setLoggedIn(true);
   };
@@ -35,11 +36,11 @@ function App() {
       .then(setGames);
   }, []);
 
-  return user && games ? (
+  return loggedIn ? (
     <Router>
       <NavBar loggedIn={loggedIn} logoutUser={logoutUser} currentUser={user} />
       <Routes>
-        <Route path="/" element={<Home user={user} loggedIn={loggedIn} setUser={setUser} setLoggedIn={setLoggedIn}/>} />
+        <Route path="/" element={<Home user={user} loggedIn={loggedIn} loginUser={loginUser}/>} />
         <Route
           path="/games"
           element={
@@ -51,7 +52,7 @@ function App() {
           }
         />
         <Route path="/signup" element={<Signup onLogin={loginUser} />} />
-        <Route path="/login" element={<Login setUser={setUser} setLoggedIn={setLoggedIn}/>} />
+        <Route path="/login" element={<Login loginUser={loginUser}/>} />
         <Route
           path="/myreviews"
           element={
@@ -80,9 +81,9 @@ function App() {
     <Router>
       <NavBar loggedIn={loggedIn} logoutUser={logoutUser} currentUser={user} />
       <Routes>
-        <Route path="/" element={<Home user={user} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login onLogin={loginUser} />} />
+        <Route path="/" element={<Home user={user} loginUser={loginUser} />} />
+        <Route path="/signup" element={<Signup onLogin={loginUser}/>} />
+        <Route path="/login" element={<Login loginUser={loginUser} />} />
       </Routes>
     </Router>
   );

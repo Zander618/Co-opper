@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 
-const Login = ({ setUser, setLoggedIn }) => {
+const Login = ({ loginUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -19,8 +19,7 @@ const Login = ({ setUser, setLoggedIn }) => {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => {
-              setUser(user);
-              setLoggedIn(true);
+            loginUser(user);
         });
         navigate("/");
       } else {
