@@ -14,7 +14,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const loginUser = (currentUser) => {
-    console.log(currentUser)
     setUser(currentUser);
     setLoggedIn(true);
   };
