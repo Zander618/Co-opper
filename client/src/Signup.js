@@ -50,7 +50,16 @@ const Signup = ( { onLogin }) => {
                     autoComplete="current-password"
           />
         </div>
-
+        <div>
+            <label htmlFor="password">Re-Enter Password: </label>
+            <input
+              type="password"
+              id="reenteredPassword"
+              value={reenteredPassword}
+              onChange={(e) => setReenteredPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+          </div>
         <input type="submit" value="Create Account" />
       </form>
     </div>
