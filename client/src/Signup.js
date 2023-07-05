@@ -65,7 +65,7 @@ const Signup = ( { onLogin }) => {
           {password === reenteredPassword ? (
             <input type="submit" value="Create Account" />
           ) : (
-            <p className="password-error-text">Passwords must match</p>
+            <p className="password-error-text"> * Passwords must match.</p>
           )}
       </form>
     </div>
