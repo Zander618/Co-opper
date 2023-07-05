@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
+import "./App.css";
 
 const Signup = ( { onLogin }) => {
   
@@ -64,7 +65,7 @@ const Signup = ( { onLogin }) => {
           {password === reenteredPassword ? (
             <input type="submit" value="Create Account" />
           ) : (
-            <p>Passwords must match</p>
+            <p className="password-error-text">Passwords must match</p>
           )}
       </form>
     </div>

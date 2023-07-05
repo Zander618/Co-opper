@@ -57,3 +57,9 @@
   width: fit-content;
   padding: 20px;
 }
+
+.password-error-text{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: larger;
+  color: #921b1b;
+}
