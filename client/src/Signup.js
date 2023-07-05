@@ -29,7 +29,8 @@ const Signup = ( { onLogin }) => {
   }
   
   return (
-    <div>
+    <div className="card">
+    <div className="login-card">
       <h1>Create Account</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -68,6 +69,7 @@ const Signup = ( { onLogin }) => {
             <p className="password-error-text"> * Passwords must match.</p>
           )}
       </form>
+    </div>
     </div>
   )
 }
