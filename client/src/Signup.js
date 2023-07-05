@@ -60,7 +60,11 @@ const Signup = ( { onLogin }) => {
               autoComplete="current-password"
             />
           </div>
-        <input type="submit" value="Create Account" />
+          {password === reenteredPassword ? (
+            <input type="submit" value="Create Account" />
+          ) : (
+            <p>Passwords must match</p>
+          )}
       </form>
     </div>
   )
