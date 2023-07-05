@@ -5,6 +5,7 @@ const Signup = ( { onLogin }) => {
   
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [reenteredPassword, setReenteredPassword] = useState("");
   const navigate = useNavigate()
 
   function handleSubmit(e) {
