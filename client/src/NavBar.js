@@ -12,10 +12,24 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
   
   const loggedOutLinks = () => {
     return (
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+      <Box sx={{ flexGrow: 2 }}>
+        <AppBar position="flex">
           <Toolbar>
-              <Link to="/">Home</Link>
+          <Typography noWrap>
+            <Link
+              to="/"
+              style={{
+                mr: 4,
+                variant: "h4",
+                color: "white",
+                padding: 10,
+                textDecoration: "none",
+                textAlign: "center",
+              }}
+            >
+              Home
+            </Link>
+          </Typography>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               Co-opper
             </Typography>
@@ -26,6 +40,7 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
                 mr: 4,
                 variant: "h4",
                 color: "white",
+                padding: 10,
                 textDecoration: "none",
                 textAlign: "center",
               }}
@@ -33,7 +48,21 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
               Sign Up
             </Link>
           </Typography>
-              <Link to="/login">Login</Link>
+          <Typography noWrap>
+            <Link
+              to="/login"
+              style={{
+                mr: 4,
+                variant: "h4",
+                color: "white",
+                padding: 10,
+                textDecoration: "none",
+                textAlign: "center",
+              }}
+            >
+              Login
+            </Link>
+          </Typography>
             <button onClick={handleLogout}>Log out</button>
           </Toolbar>
         </AppBar>
