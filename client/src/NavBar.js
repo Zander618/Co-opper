@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
 
@@ -13,7 +12,7 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
   const loggedOutLinks = () => {
     return (
       <Box sx={{ flexGrow: 2 }}>
-        <AppBar position="flex">
+        <AppBar position="static">
           <Toolbar>
           <Typography noWrap>
             <Link
@@ -84,24 +83,54 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <Button>
-              <Link to="/">Home</Link>
-            </Button>
-            <Button>
-              <Link to="/games">Games</Link>
-            </Button>
-            <Button>
-              <Link to="/myreviews">My Reviews</Link>
-            </Button>
+            <Typography noWrap>
+            <Link
+              to="/"
+              style={{
+                mr: 4,
+                variant: "h4",
+                color: "white",
+                padding: 10,
+                textDecoration: "none",
+                textAlign: "center",
+              }}
+            >
+              Home
+            </Link>
+          </Typography>
+            <Typography noWrap>
+            <Link
+              to="/games"
+              style={{
+                mr: 4,
+                variant: "h4",
+                color: "white",
+                padding: 10,
+                textDecoration: "none",
+                textAlign: "center",
+              }}
+            >
+              Games
+            </Link>
+          </Typography>
+            <Typography noWrap>
+            <Link
+              to="/myreviews"
+              style={{
+                mr: 4,
+                variant: "h4",
+                color: "white",
+                padding: 10,
+                textDecoration: "none",
+                textAlign: "center",
+              }}
+            >
+              My Reviews
+            </Link>
+          </Typography>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               Co-opper
             </Typography>
-            <Button>
-              <Link to="/signup">Sign Up</Link>
-            </Button>
-            <Button>
-              <Link to="/login">Login</Link>
-            </Button>
             <button onClick={handleLogout}>Log out</button>
           </Toolbar>
         </AppBar>
