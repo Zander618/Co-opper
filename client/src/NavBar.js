@@ -15,18 +15,25 @@ export default function ButtonAppBar({ loggedIn, logoutUser }) {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <Button>
               <Link to="/">Home</Link>
-            </Button>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               Co-opper
             </Typography>
-            <Button>
-              <Link to="/signup">Sign Up</Link>
-            </Button>
-            <Button>
+            <Typography noWrap>
+            <Link
+              to="/signup"
+              style={{
+                mr: 4,
+                variant: "h4",
+                color: "white",
+                textDecoration: "none",
+                textAlign: "center",
+              }}
+            >
+              Sign Up
+            </Link>
+          </Typography>
               <Link to="/login">Login</Link>
-            </Button>
             <button onClick={handleLogout}>Log out</button>
           </Toolbar>
         </AppBar>
