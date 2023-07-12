@@ -16,7 +16,22 @@ function App() {
   const loginUser = (currentUser) => {
     setUser(currentUser);
     setLoggedIn(true);
+  
+    fetch("/games")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Failed to fetch games data");
+        }
+      })
+      .then((data) => setGames(data))
+      .catch((error) => {
+        console.error(error);
+        // Handle the error condition
+      });
   };
+
 
   const logoutUser = () => {
     setUser({});
@@ -24,28 +39,12 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("/me")
-    .then((r) => {
+    fetch("/me").then((r) => {
       if (r.ok) {
-        return r.json();
-      } else {
-        throw new Error("Failed to fetch user data");
+        r.json().then((user) => {
+          loginUser(user)
+        });
       }
-    })
-    .then((user) => {
-      loginUser(user);
-      return fetch("/games");
-    })
-    .then((r) => {
-      if (r.ok) {
-        return r.json();
-      } else {
-        throw new Error("Failed to fetch games data");
-      }
-    })
-    .then(setGames)
-    .catch((error) => {
-      console.error(error);
     });
 }, []);
 
