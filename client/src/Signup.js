@@ -6,6 +6,7 @@ const Signup = ( { onLogin }) => {
   
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [reenteredPassword, setReenteredPassword] = useState("");
   const navigate = useNavigate()
 
@@ -19,6 +20,7 @@ const Signup = ( { onLogin }) => {
       body: JSON.stringify({
         username,
         password,
+        email
       }),
     }).then((r) => {
       if (r.ok) {
@@ -61,6 +63,16 @@ const Signup = ( { onLogin }) => {
               value={reenteredPassword}
               onChange={(e) => setReenteredPassword(e.target.value)}
               autoComplete="current-password"
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Email: </label>
+            <input
+              type="text"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="off"
             />
           </div>
           {password === reenteredPassword ? (
