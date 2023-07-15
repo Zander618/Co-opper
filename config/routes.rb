@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :games
   resources :reviews
   resources :users 
+  resources :password_resets, only: [:create]
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
