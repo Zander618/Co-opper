@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+import { Link } from "react-router-dom";
 
 const Login = ({ loginUser }) => {
   const [username, setUsername] = useState("");
@@ -53,6 +54,7 @@ const Login = ({ loginUser }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+
           {errors.length > 0 && (
             <ul style={{ color: "red" }}>
               {errors.map((error) => (
@@ -63,6 +65,19 @@ const Login = ({ loginUser }) => {
           <input type="submit" value="Login" />
         </form>
       </div>
+      <Link
+                to="/passwordreset"
+                style={{
+                  mr: 4,
+                  variant: "h4",
+                  color: "blue",
+                  textDecoration: "underline",
+                  textAlign: "right",
+                  justify: "center"
+                }}
+              >
+                Forgot Password ?
+              </Link>
     </div>
   );
 };
