@@ -1,51 +1,44 @@
-import React from "react";
-// import { useNavigate } from 'react-router-dom'
-// import "./App.css";
+import React, { useState } from "react";
 
-const ResetPassword = ( { onLogin }) => {
+const ResetPassword = () => {
+  const [email, setEmail] = useState("");
 
-//   const [email, setEmail] = useState("");
-//   const[selectedUser, setSelectedUser] = useState([])
-//   const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("/password/reset", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    })
+      .then((response) => {
+        if (response.ok) {
+        } else {
+        }
+      })
+      .catch((error) => {
+      });
+  };
 
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     fetch("/password/reset", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         email
-//       }),
-//     }).then((r) => {
-//       if (r.ok) {
-//         r.json().then((user) => onLogin(user));
-//         navigate("/")
-//       }
-//     });
-//   }
-  
   return (
-    <div className="card">
+    <div>
       <h1>Reset Password</h1>
-    {/* <div className="login-card">
-      <h1>Enter email</h1>
       <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Email: </label>
-            <input
-              type="text"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="off"
-            />
-          </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Reset Password</button>
       </form>
-    </div> */}
     </div>
-  )
-}
+  );
+};
 
-export default ResetPassword
+export default ResetPassword;
