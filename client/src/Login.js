@@ -65,7 +65,7 @@ const Login = ({ loginUser }) => {
           <input type="submit" value="Login" />
         </form>
       </div>
-      {/* <Link
+      <Link
                 to="/passwordreset"
                 style={{
                   mr: 4,
@@ -77,7 +77,7 @@ const Login = ({ loginUser }) => {
                 }}
               >
                 Forgot Password ?
-              </Link> */}
+              </Link>
     </div>
   );
 };

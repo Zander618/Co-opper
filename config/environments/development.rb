@@ -37,7 +37,8 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = "/etc/secrets/mailer-info.json"
+  mailer_info = JSON.parse(File.read("/etc/secrets/mailer-info.json"))
+  config.action_mailer.smtp_settings = mailer_info.symbolize_keys
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
