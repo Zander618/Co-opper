@@ -1,4 +1,5 @@
 class PasswordResetsController < ApplicationController
+  include ActionController::Cookies
   skip_before_action :authorize, only: [:create]
 
   def create
