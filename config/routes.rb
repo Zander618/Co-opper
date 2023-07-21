@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get "/favorite_game", to:"users#favorite_game"
 
   get "password/reset/edit", to: "password_resets#edit"
-  patch "password/reset/edit", to: "paasword_resets#update"
+  patch "password/reset/edit", to: "password_resets#update"
   
 
 end
