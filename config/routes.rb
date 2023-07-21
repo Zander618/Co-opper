@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   get "/ratings", to:"games#high_ratings"
   get "/favorite_game", to:"users#favorite_game"
 
-  post "password/reset", to: "password_resets#create"
   get "password/reset/edit", to: "password_resets#edit"
   patch "password/reset/edit", to: "paasword_resets#update"
   
