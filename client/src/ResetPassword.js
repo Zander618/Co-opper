@@ -14,11 +14,11 @@ const ResetPassword = () => {
     })
       .then((response) => {
         if (response.ok) {
+          console.log("Okay")
         } else {
+          console.log("Failed")
         }
       })
-      .catch((error) => {
-      });
   };
 
   return (
