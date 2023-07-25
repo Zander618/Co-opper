@@ -5,7 +5,7 @@ const ResetPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/password/resets", {
+    fetch("/password/reset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
