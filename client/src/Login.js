@@ -66,7 +66,7 @@ const Login = ({ loginUser }) => {
         </form>
       </div>
       <Link
-                to="/passwordreset"
+                to="/passwordrecovery"
                 style={{
                   mr: 4,
                   variant: "h4",
