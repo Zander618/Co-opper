@@ -29,7 +29,6 @@ function ResetPassword({ setUser }) {
         token: params["token"],
         email: formData.email,
         password: formData.password,
-        password_confirmation: formData.password2,
       }),
     }).then((r) => {
       if (r.ok) {

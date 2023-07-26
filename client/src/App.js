@@ -97,9 +97,7 @@ function App() {
         <Route path="/signup" element={<Signup onLogin={loginUser} />} />
         <Route path="/login" element={<Login loginUser={loginUser} />} />
         <Route path="/passwordrecovery" element={<PasswordForgot />} />
-        <Route path="/reset_password/:token">
-          <PasswordReset setUser={setUser} />
-        </Route>
+        <Route path="/reset_password/:token"element={<PasswordReset setUser={setUser} />}/>
       </Routes>
     </Router>
   );
