@@ -8,6 +8,7 @@ import Signup from "./Signup";
 import Game from "./Game";
 import MyReviews from "./MyReviews";
 import PasswordReset from "./PasswordReset";
+import PasswordForgot from "./PasswordForgot";
 
 function App() {
   const [games, setGames] = useState([]);
@@ -97,7 +98,7 @@ function App() {
         <Route path="/" element={<Home user={user} loginUser={loginUser} />} />
         <Route path="/signup" element={<Signup onLogin={loginUser}/>} />
         <Route path="/login" element={<Login loginUser={loginUser} />} />
-        <Route path="/passwordrecovery" element={<PasswordReset/>}/>
+        <Route path="/passwordrecovery" element={<PasswordForgot/>}/>
       </Routes>
     </Router>
   );

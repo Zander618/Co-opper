@@ -1,55 +1,98 @@
-import React, { useState } from "react";
+import React, {useParams, useHistory} from "react";
 
-const PasswordReset = () => {
-  const [email, setEmail] = useState("");
-  const [alerts, setAlerts] = useState([])
-  const [errors, setErrors] = useState([])
+function ResetPassword({ setUser }) {
+  const [alerts, setAlerts] = useState([]);
+  const [errors, setErrors] = useState([]);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    password2: "",
+  });
+  const params = useParams();
+  const history = useHistory();
 
-  const handleSubmit = (e) => {
+  function handleChange(e) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
-    fetch("/password/forgot", {
+    fetch("/password/reset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({email: email}),
-    })
-    .then((r) => {
+      body: JSON.stringify({
+        token: params["token"],
+        email: formData.email,
+        password: formData.password,
+        password_confirmation: formData.password2,
+      }),
+    }).then((r) => {
       if (r.ok) {
         r.json().then((data) => {
-          setErrors([])
-          setAlerts(data.alerts)
-        })
+          setUser(data.user);
+          setErrors([]);
+          setAlerts(data.alerts);
+          setTimeout(() => {
+            history.push("/");
+          }, 2000);
+        });
       } else {
         r.json().then((data) => {
-          setAlerts([])
-          setErrors(data.errors)
-        })
+          setAlerts([]);
+          setErrors(data.errors);
+        });
       }
-    })
+    });
   }
 
   return (
-    <div>
-      {/* <h1>Work in progress</h1> */}
-      <h1>Reset Password</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="card">
+      <div className="login-card">
+        <h1>Create Account</h1>
+        <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Reset Password</button>
-      </form>
-      {console.log(alerts)}
+            <label htmlFor="email">Email: </label>
+            <input
+              type="text"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Re-Enter Password: </label>
+            <input
+              type="password"
+              id="reenteredPassword"
+              value={formData.password2}
+              onChange={handleChange}
+            />
+          </div>
+          {password === password2 ? (
+            <input type="submit" value="Create Account" />
+          ) : (
+            <p className="password-error-text"> * Passwords must match.</p>
+          )}
+        </form>
+      </div>
       {console.log(errors)}
+      {console.log(alerts)}
     </div>
   );
-};
+}
 
-export default PasswordReset;
+export default ResetPassword;
