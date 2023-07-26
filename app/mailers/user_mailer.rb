@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: # The email address you use to send out resetting password emails...
+  default from: 'ZSApplicationsMailer@gmail.com '
 
   def password_reset_email
     @user = params[:user]
