@@ -14,8 +14,8 @@ class User < ApplicationRecord
   end
 
   def reset_password(params)
-      self.update!(password: params[:password], password_confirmation: params[:password_confirmation])      
-      self.update!(password_reset_token: nil, password_reset_sent_at: nil)    
+    self.update!(password: params[:password], password_confirmation: params[:password_confirmation])      
+    self.update!(password_reset_token: nil, password_reset_sent_at: nil)    
   end
 
   private
