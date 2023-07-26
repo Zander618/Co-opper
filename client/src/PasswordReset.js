@@ -2,10 +2,12 @@ import React, { useState } from "react";
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");
+  const [alerts, setAlerts] = useState([])
+  const [errors, setErrors] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/password/reset", {
+    fetch("/password/forgot", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,6 +46,8 @@ const PasswordReset = () => {
         </div>
         <button type="submit">Reset Password</button>
       </form>
+      {console.log(alerts)}
+      {console.log(errors)}
     </div>
   );
 };

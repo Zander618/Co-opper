@@ -18,9 +18,8 @@ Rails.application.routes.draw do
   get "/ratings", to:"games#high_ratings"
   get "/favorite_game", to:"users#favorite_game"
 
-  get "password/reset/edit", to: "password_resets#edit"
-  patch "password/reset/edit", to: "password_resets#update"
-  post "/password/reset", to: "password_resets#create"
+  post "/password/reset", to: "users#reset"
+  post "password/forgot", to: "users#forgot"
   
 
 end
