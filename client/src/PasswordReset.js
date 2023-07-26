@@ -10,16 +10,22 @@ const PasswordReset = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({email: email}),
     })
-      .then((response) => {
-        if (response.ok) {
-          console.log("Okay")
-        } else {
-          console.log("Failed")
-        }
-      })
-  };
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((data) => {
+          setErrors([])
+          setAlerts(data.alerts)
+        })
+      } else {
+        r.json().then((data) => {
+          setAlerts([])
+          setErrors(data.errors)
+        })
+      }
+    })
+  }
 
   return (
     <div>
