@@ -1,4 +1,4 @@
-import React, {useParams, useHistory} from "react";
+import React, {useState, useParams, useHistory} from "react";
 
 function ResetPassword({ setUser }) {
   const [alerts, setAlerts] = useState([]);
@@ -82,7 +82,7 @@ function ResetPassword({ setUser }) {
               onChange={handleChange}
             />
           </div>
-          {password === password2 ? (
+          {formData.password === formData.password2 ? (
             <input type="submit" value="Create Account" />
           ) : (
             <p className="password-error-text"> * Passwords must match.</p>

@@ -18,7 +18,7 @@ function App() {
   const loginUser = (currentUser) => {
     setUser(currentUser);
     setLoggedIn(true);
-  
+
     fetch("/games")
       .then((response) => {
         if (response.ok) {
@@ -34,7 +34,6 @@ function App() {
       });
   };
 
-
   const logoutUser = () => {
     setUser({});
     setLoggedIn(false);
@@ -44,29 +43,28 @@ function App() {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => {
-          loginUser(user)
+          loginUser(user);
         });
       }
     });
-}, []);
+  }, []);
 
   return loggedIn ? (
     <Router>
       <NavBar loggedIn={loggedIn} logoutUser={logoutUser} currentUser={user} />
       <Routes>
-        <Route path="/" element={<Home user={user} loggedIn={loggedIn} loginUser={loginUser}/>} />
         <Route
-          path="/games"
+          path="/"
           element={
-            <GamesList
-              games={games}
-              setGames={setGames}
-              user={user}
-            />
+            <Home user={user} loggedIn={loggedIn} loginUser={loginUser} />
           }
         />
+        <Route
+          path="/games"
+          element={<GamesList games={games} setGames={setGames} user={user} />}
+        />
         <Route path="/signup" element={<Signup onLogin={loginUser} />} />
-        <Route path="/login" element={<Login loginUser={loginUser}/>} />
+        <Route path="/login" element={<Login loginUser={loginUser} />} />
         <Route
           path="/myreviews"
           element={
@@ -96,9 +94,12 @@ function App() {
       <NavBar loggedIn={loggedIn} logoutUser={logoutUser} currentUser={user} />
       <Routes>
         <Route path="/" element={<Home user={user} loginUser={loginUser} />} />
-        <Route path="/signup" element={<Signup onLogin={loginUser}/>} />
+        <Route path="/signup" element={<Signup onLogin={loginUser} />} />
         <Route path="/login" element={<Login loginUser={loginUser} />} />
-        <Route path="/passwordrecovery" element={<PasswordForgot/>}/>
+        <Route path="/passwordrecovery" element={<PasswordForgot />} />
+        <Route path="/reset_password/:token">
+          <PasswordReset setUser={setUser} />
+        </Route>
       </Routes>
     </Router>
   );
