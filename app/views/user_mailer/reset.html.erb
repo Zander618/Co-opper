@@ -8,7 +8,6 @@
   <p>Hello <%= @user.email %>,</p>
   <p>Someone requested a reset of your password.</p>
   <p>If this was you, click the link below to reset your password. The link will expire automatically in 15 minutes.</p>
-  <p><%= link_to "Reset Password", password_reset_edit_url(token: @token) %></p>
+  <p><a href="localhost:4000//password/reset/edit?token=<%= @token %>">Reset Password</a></p>
 </body>
 </html>
-
