@@ -63,7 +63,7 @@ const Login = ({ loginUser }) => {
             </ul>
           )}
           <input type="submit" value="Login" />
-        </form>
+        </form> 
       </div>
       <Link
                 to="/passwordrecovery"

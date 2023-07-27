@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 
-const Signup = ( { onLogin }) => {
-  
+const Signup = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [reenteredPassword, setReenteredPassword] = useState("");
-  const navigate = useNavigate()
+  const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -20,42 +20,44 @@ const Signup = ( { onLogin }) => {
       body: JSON.stringify({
         username,
         password,
-        email
+        email,
       }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => onLogin(user));
-        navigate("/")
+        navigate("/");
+      } else {
+        r.json().then((errorData) => setErrors(errorData.errors));
       }
     });
   }
-  
+
   return (
     <div className="card">
-    <div className="login-card">
-      <h1>Create Account</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username: </label>
-          <input 
-                    type="text"
-                    id="username"
-                    autoComplete="off"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <input 
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    autoComplete="current-password"
-          />
-        </div>
-        <div>
+      <div className="login-card">
+        <h1>Create Account</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="username">Username: </label>
+            <input
+              type="text"
+              id="username"
+              autoComplete="off"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+          </div>
+          <div>
             <label htmlFor="password">Re-Enter Password: </label>
             <input
               type="password"
@@ -75,15 +77,22 @@ const Signup = ( { onLogin }) => {
               autoComplete="off"
             />
           </div>
+          {errors.length > 0 && (
+            <ul style={{ color: "red" }}>
+              {errors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          )}
           {password === reenteredPassword ? (
             <input type="submit" value="Create Account" />
           ) : (
             <p className="password-error-text"> * Passwords must match.</p>
           )}
-      </form>
+        </form>
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
