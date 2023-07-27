@@ -48,7 +48,7 @@
   font-size: larger;
   color: #1b4392;
   width: 375px;
-  height: 275px;
+  height: flex;
   justify-content: center;
 }
 
