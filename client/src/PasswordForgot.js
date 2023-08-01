@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 const PasswordForgot = () => {
   const [email, setEmail] = useState("");
-  const [alerts, setAlerts] = useState([])
-  const [errors, setErrors] = useState([])
+  const [alerts, setAlerts] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,27 +12,26 @@ const PasswordForgot = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({email: email}),
-    })
-    .then((r) => {
+      body: JSON.stringify({ email: email }),
+    }).then((r) => {
       if (r.ok) {
         r.json().then((data) => {
-          setErrors([])
-          setAlerts(data.alerts)
-        })
+          setErrors([]);
+          setAlerts(data.alerts);
+        });
       } else {
         r.json().then((data) => {
-          setAlerts([])
-          setErrors(data.errors)
-        })
+          setAlerts([]);
+          setErrors(data.errors);
+        });
       }
-    })
-  }
+    });
+  };
 
   return (
     <div>
       {/* <h1>Work in progress</h1> */}
-      <h1>Reset Password</h1>
+      <h1>Forgot Your Password</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email:</label>
@@ -46,8 +45,20 @@ const PasswordForgot = () => {
         </div>
         <button type="submit">Reset Password</button>
       </form>
-      {console.log(alerts)}
-      {console.log(errors)}
+      {alerts.length > 0 && (
+        <ul style={{ color: "red" }}>
+          {alerts.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
+      {errors.length > 0 && (
+        <ul style={{ color: "red" }}>
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
