@@ -58,7 +58,7 @@ function PasswordReset({ setUser }) {
         <div>
             <label htmlFor="email">Email: </label>
             <input
-              type="text"
+              type="email"
               id="email"
               value={formData.email}
               onChange={handleChange}
@@ -89,8 +89,20 @@ function PasswordReset({ setUser }) {
           )}
         </form>
       </div>
-      {console.log(errors)}
-      {console.log(alerts)}
+      {alerts.length > 0 && (
+        <ul style={{ color: "red" }}>
+          {alerts.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
+      {errors.length > 0 && (
+        <ul style={{ color: "red" }}>
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

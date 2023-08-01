@@ -30,7 +30,6 @@ const PasswordForgot = () => {
 
   return (
     <div>
-      {/* <h1>Work in progress</h1> */}
       <h1>Forgot Your Password</h1>
       <form onSubmit={handleSubmit}>
         <div>
