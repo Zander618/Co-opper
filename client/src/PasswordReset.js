@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function PasswordReset({ setUser }) {
   const [alerts, setAlerts] = useState([]);
@@ -10,7 +10,7 @@ function PasswordReset({ setUser }) {
     password2: "",
   });
   const params = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setFormData({
@@ -38,7 +38,7 @@ function PasswordReset({ setUser }) {
           setErrors([]);
           setAlerts(data.alerts);
           setTimeout(() => {
-            history.push("/");
+            navigate("/");
           }, 2000);
         });
       } else {
