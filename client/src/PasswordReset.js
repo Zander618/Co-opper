@@ -1,4 +1,5 @@
-import React, {useState, useParams, useHistory} from "react";
+import React, {useState} from "react";
+import { useParams, useHistory } from "react-router-dom";
 
 function PasswordReset({ setUser }) {
   const [alerts, setAlerts] = useState([]);
