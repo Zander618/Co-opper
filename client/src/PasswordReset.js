@@ -1,6 +1,6 @@
 import React, {useState, useParams, useHistory} from "react";
 
-function ResetPassword({ setUser }) {
+function PasswordReset({ setUser }) {
   const [alerts, setAlerts] = useState([]);
   const [errors, setErrors] = useState([]);
   const [formData, setFormData] = useState({
@@ -94,4 +94,4 @@ function ResetPassword({ setUser }) {
   );
 }
 
-export default ResetPassword;
+export default PasswordReset;
