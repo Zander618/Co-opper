@@ -91,7 +91,7 @@ function PasswordReset({ setUser }) {
             </label>
           </div>
           {formData.password === formData.password2 ? (
-            <input type="submit" value="Create Account" />
+            <input type="submit" value="Change Password" />
           ) : (
             <p className="password-error-text"> * Passwords must match.</p>
           )}
