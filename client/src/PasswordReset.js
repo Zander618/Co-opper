@@ -12,12 +12,7 @@ function PasswordReset({ setUser }) {
   const params = useParams();
   const navigate = useNavigate();
 
-  function handleChange(e) {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  }
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -50,37 +45,50 @@ function PasswordReset({ setUser }) {
     });
   }
 
+  function handleChange(e) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
   return (
     <div className="card">
       <div className="login-card">
-        <h1>Create Account</h1>
+        <h1>Reset Your Password</h1>
         <form onSubmit={handleSubmit}>
         <div>
-            <label htmlFor="email">Email: </label>
+            <label >Email: 
             <input
-              type="email"
-              id="email"
+              type="text"
+              name="email"
+              placeholder="Re-enter Email"
               value={formData.email}
               onChange={handleChange}
             />
+            </label>
           </div>
           <div>
-            <label htmlFor="password">Password: </label>
+            <label>Password: 
             <input
               type="password"
-              id="password"
+              name="password"
+              placeholder="Password"
               value={formData.password}
               onChange={handleChange}
             />
+            </label>
           </div>
           <div>
-            <label htmlFor="password">Re-Enter Password: </label>
+            <label >Re-Enter Password: 
             <input
               type="password"
-              id="reenteredPassword"
+              name="password2"
+              placeholder="Re-enter Password"
               value={formData.password2}
               onChange={handleChange}
             />
+            </label>
           </div>
           {formData.password === formData.password2 ? (
             <input type="submit" value="Create Account" />
@@ -103,6 +111,7 @@ function PasswordReset({ setUser }) {
           ))}
         </ul>
       )}
+      {console.log(formData.email)}
     </div>
   );
 }
