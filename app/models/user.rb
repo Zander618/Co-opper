@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 6}, if: :password
 
   def send_password_reset
-    self.update!(password_reset_token: self.generate_base64_token)
+    self.update!(password_reset_token: self.generate_base64_token, password_reset_sent_at: Time.zone.now)
     UserMailer.with(user: self, token: self.password_reset_token).password_reset_email.deliver_now
   end
 
