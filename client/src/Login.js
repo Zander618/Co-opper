@@ -20,7 +20,7 @@ const Login = ({ loginUser }) => {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => {
-            loginUser(user);
+          loginUser(user);
         });
         navigate("/");
       } else {
@@ -63,21 +63,21 @@ const Login = ({ loginUser }) => {
             </ul>
           )}
           <input type="submit" value="Login" />
-        </form> 
+        </form>
       </div>
       <Link
-                to="/passwordrecovery"
-                style={{
-                  mr: 4,
-                  variant: "h4",
-                  color: "blue",
-                  textDecoration: "underline",
-                  textAlign: "right",
-                  justify: "center"
-                }}
-              >
-                Forgot Password ?
-              </Link>
+        to="/passwordrecovery"
+        style={{
+          mr: 4,
+          variant: "h4",
+          color: "blue",
+          textDecoration: "underline",
+          textAlign: "right",
+          justify: "center",
+        }}
+      >
+        Forgot Password ?
+      </Link>
     </div>
   );
 };
